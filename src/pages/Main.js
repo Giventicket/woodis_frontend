@@ -1,12 +1,21 @@
-import { Link } from "react-router-dom";
+import { Box } from "@material-ui/core";
+import { Logo, Description, LoginForm, Menu } from "../components";
+import { LoginFormContainer } from "../containers";
 
 function Main() {
   return (
     <>
-      <div>메인 페이지 입니다.</div>
-      <Link to="/calendar">사용자 소비 달력</Link>
-      <br />
-      <Link to="/benefits">카드별 소비 혜택</Link>
+      <Box pt={2} />
+      <Logo />
+      <Box pt={2} />
+      <Description>
+        WOODIS와 함께 나의 소비달력, 맞춤형 우리카드, 할인 추천을 위한 카드정보
+        구독 서비스를 활용해보세요.
+      </Description>
+      <Box pt={6} />
+      <Menu />
+      <Box pt={8} />
+      <LoginFormContainer />
     </>
   );
 }
