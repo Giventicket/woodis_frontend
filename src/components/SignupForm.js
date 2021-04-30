@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField, Box, Button, Grid } from "@material-ui/core";
+import { TextField, Box, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -24,10 +24,35 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SignupForm = function ({ onChangeId, onChangePassword, onChangePasswordConfirm, onChangeAccount, onChangePhone }) {
+const SignupForm = function ({ onChangeName, onChangePhone, onChangeEmail, onChangeId, onChangePassword, onChangePasswordConfirm }) {
   const classes = useStyles();
   return (
-    <form className={classes.form}>
+    <form className={classes.form}>      
+      <TextField
+        className={classes.input}
+        size="small"
+        variant="outlined"
+        placeholder="이름 입력"
+		onChange={e => onChangeName(e.target.value)}
+      />
+      <Box mt={2} />
+      <TextField
+        className={classes.input}
+        size="small"
+        variant="outlined"
+        placeholder="전화번호 입력"
+		onChange={e => onChangePhone(e.target.value)}
+      />
+      <Box mt={2} />
+      <TextField
+        className={classes.input}
+        size="small"
+        variant="outlined"
+        placeholder="이메일 입력"
+		onChange={e => onChangeEmail(e.target.value)}
+      />
+      <Box mt={2} />
+      <Box mt={2} />
       <TextField
         className={classes.input}
         size="small"
@@ -52,22 +77,6 @@ const SignupForm = function ({ onChangeId, onChangePassword, onChangePasswordCon
         type="password"
         placeholder="비밀번호 확인"
 		onChange={e => onChangePasswordConfirm(e.target.value)}
-      />
-      <Box mt={2} />
-      <TextField
-        className={classes.input}
-        size="small"
-        variant="outlined"
-        placeholder="계좌번호 입력"
-		onChange={e => onChangeAccount(e.target.value)}
-      />
-      <Box mt={2} />
-      <TextField
-        className={classes.input}
-        size="small"
-        variant="outlined"
-        placeholder="전화번호 입력"
-		onChange={e => onChangePhone(e.target.value)}
       />
       <Box mt={2} />
       <Box pl="42px">

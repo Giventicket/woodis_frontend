@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#E8F2FD",
     color: "#715F61",
   },
-  links: { paddingTop: "1rem", paddingLeft: "781px" },
+  links: { paddingTop: "1rem", textAlign: "center" },
   button: {
     height: "97.5px",
     color: "white",
