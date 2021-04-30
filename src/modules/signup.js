@@ -1,5 +1,10 @@
 import { createAction, handleActions } from "redux-actions";
+import { takeLatest } from "redux-saga/effects";
+import * as api from "../libs/api";
+import createRequestSaga from "../libs/createRequestSaga";
 
+const SIGNUP = "signup/SIGNUP";
+const SIGNUP_SUCCESS = "signup/SIGNUP_SUCCESS";
 const CHANGE_NAME = "signup/CHANGE_NAME";
 const CHANGE_AGENCY = "signup/CHANGE_AGENCY";
 const CHANGE_PHONE = "signup/CHANGE_PHONE";
@@ -23,6 +28,12 @@ export const change_passwordConfirm = createAction(
   passwordConfirm => passwordConfirm
 );
 export const reset = createAction(RESET);
+
+const asyncSignupSaga = createRequestSaga(SIGNUP, api.asyncSignUp);
+
+export function* signupSaga() {
+  yield takeLatest(SIGNUP, asyncSignupSaga);
+}
 
 const initialState = {
   name: null,
@@ -61,6 +72,7 @@ const signup = handleActions(
       password: null,
       passwordConfirm: null,
     }),
+    [SIGNUP_SUCCESS] : state => (state)
   },
   initialState
 );
