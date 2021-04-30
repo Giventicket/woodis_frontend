@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SignupForm = function ({ onChangeId, onChangePassword }) {
+const SignupForm = function ({ onChangeId, onChangePassword, onChangePasswordConfirm, onChangeAccount, onChangePhone }) {
   const classes = useStyles();
   return (
     <form className={classes.form}>
@@ -33,6 +33,7 @@ const SignupForm = function ({ onChangeId, onChangePassword }) {
         size="small"
         variant="outlined"
         placeholder="아이디 입력"
+		onChange={e => onChangeId(e.target.value)}
       />
       <Box mt={2} />
       <TextField
@@ -41,6 +42,7 @@ const SignupForm = function ({ onChangeId, onChangePassword }) {
         variant="outlined"
         type="password"
         placeholder="비밀번호 입력"
+		onChange={e => onChangePassword(e.target.value)}
       />
       <Box mt={2} />
       <TextField
@@ -49,6 +51,7 @@ const SignupForm = function ({ onChangeId, onChangePassword }) {
         variant="outlined"
         type="password"
         placeholder="비밀번호 확인"
+		onChange={e => onChangePasswordConfirm(e.target.value)}
       />
       <Box mt={2} />
       <TextField
@@ -56,6 +59,7 @@ const SignupForm = function ({ onChangeId, onChangePassword }) {
         size="small"
         variant="outlined"
         placeholder="계좌번호 입력"
+		onChange={e => onChangeAccount(e.target.value)}
       />
       <Box mt={2} />
       <TextField
@@ -63,14 +67,19 @@ const SignupForm = function ({ onChangeId, onChangePassword }) {
         size="small"
         variant="outlined"
         placeholder="전화번호 입력"
+		onChange={e => onChangePhone(e.target.value)}
       />
       <Box mt={2} />
-      <Box pl="84px">
-        <Button variant="contained" className={classes.signupButton}>
-          회원가입
+      <Box pl="42px">
+        <Button
+          variant="contained"
+          className={classes.signupButton}
+          type="submit"
+        >
+          회원가입 하기
         </Button>
         <Box component="span" ml={2} />
-        <Button variant="contained" className={classes.cancelButton}>
+        <Button variant="contained" className={classes.cancelButton} href="/">
           취소
         </Button>
       </Box>
