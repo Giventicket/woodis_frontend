@@ -9,12 +9,16 @@ import {
   CardMedia,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import {useFadeIn} from "../libs";
+import { useFadeIn } from "../libs";
 
 const useStyles = makeStyles(theme => ({
-  grid: { textAlign: "center" },
+  grid: {
+    textAlign: "center",
+    background: "white",
+    paddingTop: "1rem",
+    paddingBottom: "1rem",
+  },
 }));
-
 
 const Item = function ({ children, description, href, delay }) {
   const fadeIn = useFadeIn(2, delay);
@@ -28,23 +32,30 @@ const Item = function ({ children, description, href, delay }) {
   );
 };
 
-const Menu = function () {
+const Menu = function ({ name }) {
   const classes = useStyles();
+  let calanderDescription = "내 소비달력 확인하기";
+  let creditCardDescription = "우리카드로 알아보는 나의 소비 혜택";
+  let subscriptDescription = "더 많은 할인을 위한 카드 정보 구독";
+  if (name) {
+    calanderDescription = `${name}님의 소비달력 확인하기`;
+    creditCardDescription = `우리카드로 알아보는 ${name}님의 소비 혜택`;
+  }
   return (
-    <Grid container className={classes.grid} >
+    <Grid container className={classes.grid}>
       <Grid item xs />
       <Grid item xs>
-        <Item delay={0} description="내 소비달력 확인하기" href="/calendar">
+        <Item delay={0} description={calanderDescription} href="/calendar">
           <CalendarTodayIcon style={{ color: "#008CE0", fontSize: 200 }} />
         </Item>
       </Grid>
       <Grid item xs>
-        <Item delay={0.5} description="우리카드로 알아보는 내 소비 혜택" href="/benefits">
+        <Item delay={0.5} description={creditCardDescription} href="/benefits">
           <CreditCardIcon style={{ color: "#008CE0", fontSize: 200 }} />
         </Item>
       </Grid>
       <Grid item xs>
-        <Item delay={1} description="더 많은 할인을 위한 카드 정복 구독">
+        <Item delay={1} description={subscriptDescription}>
           <SubscriptionsIcon style={{ color: "#008CE0", fontSize: 200 }} />
         </Item>
       </Grid>

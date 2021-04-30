@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 
 const CHANGE_NAME = "signup/CHANGE_NAME";
+const CHANGE_AGENCY = "signup/CHANGE_AGENCY";
 const CHANGE_PHONE = "signup/CHANGE_PHONE";
 const CHANGE_EMAIL = "signup/CHANGE_EMAIL";
 const CHANGE_ID = "signup/CHANGE_ID";
@@ -9,6 +10,7 @@ const CHANGE_PASSWORDCONFIRM = "signup/CHANGE_PASSWORDCONFIRM";
 const RESET = "signup/RESET";
 
 export const change_name = createAction(CHANGE_NAME, name => name);
+export const change_agency = createAction(CHANGE_AGENCY, agency => agency);
 export const change_phone = createAction(CHANGE_PHONE, phone => phone);
 export const change_email = createAction(CHANGE_EMAIL, email => email);
 export const change_id = createAction(CHANGE_ID, id => id);
@@ -23,12 +25,12 @@ export const change_passwordConfirm = createAction(
 export const reset = createAction(RESET);
 
 const initialState = {
-  name: "",
-  phone: "",
-  email: "",
-  id: "",
-  password: "",
-  passwordConfirm: "",
+  name: null,
+  phone: null,
+  email: null,
+  id: null,
+  password: null,
+  passwordConfirm: null,
 };
 
 const signup = handleActions(
@@ -52,12 +54,12 @@ const signup = handleActions(
       passwordConfirm,
     }),
     [RESET]: state => ({
-      name: "",
-      phone: "",
-      email: "",
-      id: "",
-      password: "",
-      passwordConfirm: "",
+      name: null,
+      phone: null,
+      email: null,
+      id: null,
+      password: null,
+      passwordConfirm: null,
     }),
   },
   initialState

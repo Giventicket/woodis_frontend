@@ -12,8 +12,8 @@ export const change_password = createAction(
 export const reset = createAction(RESET);
 
 const initialState = {
-  id: "",
-  password: "",
+  id: null,
+  password: null,
 };
 
 const login = handleActions(
@@ -23,7 +23,7 @@ const login = handleActions(
       ...state,
       password,
     }),
-    [RESET]: state => ({ id: "", password: "" }),
+    [RESET]: state => ({ id: null, password: null }),
   },
   initialState
 );

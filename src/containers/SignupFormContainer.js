@@ -4,6 +4,7 @@ import { SignupForm } from "../components";
 import { useDispatch } from "react-redux";
 import {
   change_name,
+  change_agency,
   change_phone,
   change_email,
   change_id,
@@ -14,18 +15,19 @@ import {
 
 const SignupFormContainer = () => {
   const dispatch = useDispatch();
-  const onChangeName = useCallback(
-    name => dispatch(change_name(name)),
+  const onChangeName = useCallback(name => dispatch(change_name(name)), [
+    dispatch,
+  ]);
+  const onChangeAgency = useCallback(
+    agency => dispatch(change_agency(agency)),
     [dispatch]
   );
-  const onChangePhone = useCallback(
-	phone => dispatch(change_phone(phone)),
-	[dispatch]
-  );
-  const onChangeEmail = useCallback(
-	email => dispatch(change_email(email)),
-	[dispatch]
-  );
+  const onChangePhone = useCallback(phone => dispatch(change_phone(phone)), [
+    dispatch,
+  ]);
+  const onChangeEmail = useCallback(email => dispatch(change_email(email)), [
+    dispatch,
+  ]);
   const onChangeId = useCallback(id => dispatch(change_id(id)), [dispatch]);
   const onChangePassword = useCallback(
     password => dispatch(change_password(password)),
@@ -40,7 +42,15 @@ const SignupFormContainer = () => {
   }, [dispatch]);
 
   return (
-    <SignupForm onChangeName={onChangeName} onChangePhone={onChangePhone}  onChangeEmail={onChangeEmail} onChangeId={onChangeId} onChangePassword={onChangePassword} onChangePasswordConfirm={onChangePasswordConfirm}/>
+    <SignupForm
+      onChangeName={onChangeName}
+      onChangeAgency={onChangeAgency}
+      onChangePhone={onChangePhone}
+      onChangeEmail={onChangeEmail}
+      onChangeId={onChangeId}
+      onChangePassword={onChangePassword}
+      onChangePasswordConfirm={onChangePasswordConfirm}
+    />
   );
 };
 

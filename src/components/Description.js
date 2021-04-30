@@ -4,6 +4,7 @@ const style = {
   textAlign: "center",
   fontSize: "1rem",
   color: "grey",
+  alignSelf: "center",
 };
 
 const Description = function ({ children }) {
