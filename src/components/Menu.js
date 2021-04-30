@@ -9,7 +9,7 @@ import {
   CardMedia,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { useFadeIn } from "../libs";
+import useFadeIn from "../libs/useFadeIn";
 
 const useStyles = makeStyles(theme => ({
   grid: {

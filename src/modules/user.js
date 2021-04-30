@@ -1,39 +1,41 @@
 import { createAction, handleActions } from "redux-actions";
+import { takeLatest } from "redux-saga/effects";
+import * as api from "../libs/api";
+import createRequestSaga from "../libs/createRequestSaga";
 
-const CHANGE_USER = "user/CHANGE_USER";
-const CHANGE_TOKEN = "user/CHANGE_TOKEN";
+const LOGIN = "user/LOGIN";
+const LOGIN_SUCCESS = "user/LOGIN_SUCCESS";
+const GETUSER = "user/GETUSER";
+const GETUSER_SUCCESS = "user/GETUSER_SUCCESS";
+const SETUSER = "user/SETUSER";
 const RESET = "user/RESET";
 
-export const change_user = createAction(CHANGE_USER, user => user);
-export const change_token = createAction(CHANGE_TOKEN, token => token);
+export const log_in = createAction(LOGIN, (id, password) => ({
+  id,
+  password,
+}));
+export const get_user = createAction(GETUSER);
+export const set_user = createAction(SETUSER, user=>user);
 export const reset = createAction(RESET);
 
-/*
-const loginState = {
-  user: {
-    userName: "서준표",
-    phone: "01081914070",
-    email: "jpseo99@gmail.com",
-    userID: "서준표",
-    accountList: ["123123890-12379812-1238123"],
-  },
-  token: "not null",
-};
-*/
+const asyncLogin = createRequestSaga(LOGIN, api.asyncLogin);
+const asyncGetUser = createRequestSaga(GETUSER, api.asyncGetUser);
+
+export function* userSaga() {
+  yield takeLatest(LOGIN, asyncLogin);
+  yield takeLatest(GETUSER, asyncGetUser);
+}
 
 const initialState = {
   user: null,
-  token: null,
 };
 
 const user = handleActions(
   {
-    [CHANGE_USER]: (state, { payload: user }) => ({ ...state, user }),
-    [CHANGE_TOKEN]: (state, { payload: token }) => ({
-      ...state,
-      token,
-    }),
-    [RESET]: state => ({ user: null, token: null }),
+    [RESET]: state => ({ user: null }),
+    [LOGIN_SUCCESS]: (state, { payload: user }) => ({ ...state, user }),
+    [GETUSER_SUCCESS]: (state, { payload: user }) => ({ ...state, user }),
+	[SETUSER]: (state, { payload: user }) => ({ ...state, user }),
   },
   initialState
 );

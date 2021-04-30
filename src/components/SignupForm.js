@@ -1,12 +1,14 @@
 import React from "react";
-import { TextField, Box, Button } from "@material-ui/core";
+import { TextField, Box, Button, Select, MenuItem } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
-import { useFadeIn } from "../libs";
+import useFadeIn from "../libs/useFadeIn";
 
 const useStyles = makeStyles(theme => ({
   form: { textAlign: "center" },
   input: {
     backgroundColor: "#E8F2FD",
+    width: "243px",
     color: "#715F61",
   },
   signupButton: {
@@ -25,6 +27,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const StyledSelect = withStyles({
+  root: {
+    backgroundColor: "#E8F2FD",
+    padding: "10.5px 14px",
+    width: "198px",
+    color: "#715F61",
+  },
+  input: {
+    padding: 0,
+  },
+})(Select);
+
 const SignupForm = function ({
   onChangeName,
   onChangeAgency,
@@ -33,12 +47,20 @@ const SignupForm = function ({
   onChangeId,
   onChangePassword,
   onChangePasswordConfirm,
+  signup,
 }) {
   const classes = useStyles();
   const fadeIn = useFadeIn(0.5);
 
   return (
-    <form className={classes.form} {...fadeIn}>
+    <form
+      className={classes.form}
+      {...fadeIn}
+      onSubmit={e => {
+        e.preventDefault();
+        signup();
+      }}
+    >
       <TextField
         className={classes.input}
         size="small"
@@ -47,13 +69,30 @@ const SignupForm = function ({
         onChange={e => onChangeName(e.target.value)}
       />
       <Box mt={2} />
-      <TextField
-        className={classes.input}
-        size="small"
+      <StyledSelect
+        defaultValue={1}
         variant="outlined"
-        placeholder="통신사 입력"
-        onChange={e => onChangeAgency(e.target.value)}
-      />
+        onChange={e => onChangeAgency(e.target.value.toString())}
+      >
+        <MenuItem value={1} key="SKT">
+          SKT
+        </MenuItem>
+        <MenuItem value={2} key="KT">
+          KT
+        </MenuItem>
+        <MenuItem value={3} key="LGU+">
+          LGU+
+        </MenuItem>
+        <MenuItem value={4} key="SKT(알뜰폰)">
+          SKT(알뜰폰)
+        </MenuItem>
+        <MenuItem value={5} key="KT(알뜰폰)">
+          KT(알뜰폰)
+        </MenuItem>
+        <MenuItem value={6} key="LGU+(알뜰폰)">
+          LGU+(알뜰폰)
+        </MenuItem>
+      </StyledSelect>
       <Box mt={2} />
       <TextField
         className={classes.input}
@@ -98,7 +137,7 @@ const SignupForm = function ({
         onChange={e => onChangePasswordConfirm(e.target.value)}
       />
       <Box mt={2} />
-      <Box pl="42px">
+      <Box pl="15px">
         <Button
           variant="contained"
           className={classes.signupButton}

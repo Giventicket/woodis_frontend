@@ -14,6 +14,17 @@ const CHANGE_PASSWORD = "signup/CHANGE_PASSWORD";
 const CHANGE_PASSWORDCONFIRM = "signup/CHANGE_PASSWORDCONFIRM";
 const RESET = "signup/RESET";
 
+export const sign_up = createAction(
+  SIGNUP,
+  (name, agency, phone, email, id, password) => ({
+    name,
+    agency,
+    phone,
+    email,
+    id,
+    password,
+  })
+);
 export const change_name = createAction(CHANGE_NAME, name => name);
 export const change_agency = createAction(CHANGE_AGENCY, agency => agency);
 export const change_phone = createAction(CHANGE_PHONE, phone => phone);
@@ -37,6 +48,7 @@ export function* signupSaga() {
 
 const initialState = {
   name: null,
+  agency: "1",
   phone: null,
   email: null,
   id: null,
@@ -47,6 +59,7 @@ const initialState = {
 const signup = handleActions(
   {
     [CHANGE_NAME]: (state, { payload: name }) => ({ ...state, name }),
+    [CHANGE_AGENCY]: (state, { payload: agency }) => ({ ...state, agency }),
     [CHANGE_PHONE]: (state, { payload: phone }) => ({
       ...state,
       phone,
@@ -66,13 +79,14 @@ const signup = handleActions(
     }),
     [RESET]: state => ({
       name: null,
+      agency: "1",
       phone: null,
       email: null,
       id: null,
       password: null,
       passwordConfirm: null,
     }),
-    [SIGNUP_SUCCESS] : state => (state)
+    [SIGNUP_SUCCESS]: state => state,
   },
   initialState
 );

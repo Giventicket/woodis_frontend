@@ -25,11 +25,16 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const LoginForm = function ({ onChangeId, onChangePassword }) {
+const LoginForm = function ({ onChangeId, onChangePassword, login }) {
   const classes = useStyles();
   return (
     <>
-      <form>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          login();
+        }}
+      >
         <Grid container justify="center">
           <Grid item>
             <Box className={classes.box} mr={2}>

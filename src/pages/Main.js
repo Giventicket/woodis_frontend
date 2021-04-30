@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box } from "@material-ui/core";
 import { Logo, Description, Menu } from "../components";
 import { LoginFormContainer, UserDescriptionContainer } from "../containers";
@@ -6,6 +6,9 @@ import { useSelector } from "react-redux";
 
 function Main() {
   const user = useSelector(state => state.user.user);
+  useEffect(() => {
+	  console.log(user);
+  }, [user]);
   return (
     <>
       <Box pt={2} />
@@ -17,12 +20,12 @@ function Main() {
       </Description>
       <Box pt={8} />
       {user ? (
-        <UserDescriptionContainer name={user.userName} />
+        <UserDescriptionContainer name={user.name} />
       ) : (
         <LoginFormContainer />
       )}
       <Box pt={8} />
-      <Menu name={user ? user.userName : null} />
+      <Menu name={user ? user.name : null} />
     </>
   );
 }

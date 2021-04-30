@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import { Main, Benefit, Benefits, Calendar, SignUp } from "./pages";
+import { useDispatch } from "react-redux";
+
 
 function App() {
+  const dispatch = useDispatch();
   return (
     <>
       <Route exact path="/calendar" component={Calendar} />
