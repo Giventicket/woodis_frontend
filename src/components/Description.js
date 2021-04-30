@@ -1,3 +1,5 @@
+import React from "react";
+
 const style = {
   textAlign: "center",
   fontSize: "1rem",
@@ -7,4 +9,4 @@ const style = {
 const Description = function ({ children }) {
   return <div style={style}>{children}</div>;
 };
-export default Description;
+export default React.memo(Description);

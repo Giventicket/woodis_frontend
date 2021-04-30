@@ -1,3 +1,5 @@
+import React from "react";
+
 function Benefits() {
   return (
     <div>
@@ -5,4 +7,4 @@ function Benefits() {
     </div>
   );
 }
-export default Benefits;
+export default React.memo(Benefits);

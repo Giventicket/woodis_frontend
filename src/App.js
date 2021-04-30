@@ -1,3 +1,4 @@
+import React from "react";
 import { Route } from "react-router-dom";
 import { Main, Benefit, Benefits, Calendar, SignUp } from "./pages";
 
@@ -13,4 +14,4 @@ function App() {
   );
 }
 
-export default App;
+export default React.memo(App);

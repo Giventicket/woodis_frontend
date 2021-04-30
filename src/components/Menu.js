@@ -1,3 +1,4 @@
+import React from "react";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
 import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
@@ -49,4 +50,4 @@ const Menu = function () {
     </Grid>
   );
 };
-export default Menu;
+export default React.memo(Menu);

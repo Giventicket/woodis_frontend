@@ -1,3 +1,5 @@
+import React from "react";
+
 const style = {
   textAlign: "center",
   fontSize: "2rem",
@@ -6,4 +8,4 @@ const style = {
 const Logo = function () {
   return <div style={style}>Woodis</div>;
 };
-export default Logo;
+export default React.memo(Logo);
