@@ -5,6 +5,9 @@ import LoginForm from "./LoginForm";
 import Menu from "./Menu";
 import UserDescription from "./UserDescription";
 import Footer from "./Footer";
+import SingleMenu from "./SingleMenu";
+import ConsumptionBoard from "./ConsumptionBoard";
+import ConsumptionPanel from "./ConsumptionPanel";
 
 export {
   Logo,
@@ -14,4 +17,7 @@ export {
   SignupForm,
   UserDescription,
   Footer,
+  SingleMenu,
+  ConsumptionBoard,
+  ConsumptionPanel,
 };

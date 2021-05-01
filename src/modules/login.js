@@ -23,7 +23,7 @@ const login = handleActions(
       ...state,
       password,
     }),
-    [RESET]: state => ({ id: null, password: null }),
+    [RESET]: state => initialState,
   },
   initialState
 );
