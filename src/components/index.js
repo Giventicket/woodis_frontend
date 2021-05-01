@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import SingleMenu from "./SingleMenu";
 import ConsumptionBoard from "./ConsumptionBoard";
 import ConsumptionPanel from "./ConsumptionPanel";
+import Cards from "./Cards";
 
 export {
   Logo,
@@ -17,6 +18,7 @@ export {
   SignupForm,
   UserDescription,
   Footer,
+  Cards,
   SingleMenu,
   ConsumptionBoard,
   ConsumptionPanel,
