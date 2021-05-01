@@ -67,8 +67,10 @@ export const asyncLogin = async ({ id, password }) => {
       }
     );
     const { token } = response.data;
+	console.log(token);
     setCookie("user", token, 30);
     response = await asyncGetUser();
+	console.log(response);
     return response;
   } catch (e) {
     swal("아이디 혹은 비밀번호가 일치하지 않습니다.").then(() => {
