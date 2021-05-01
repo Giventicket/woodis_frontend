@@ -62,10 +62,10 @@ export const asyncLogin = async ({ id, password }) => {
       password: password,
     });
     const { token } = response.data;
-    console.log("token", token);
+    console.log("response auth/login :", response);
     setCookie("user", token, 30);
     response = await asyncGetUser();
-    console.log("response.data", response.data);
+    console.log("response user/getUser:", response);
     return response;
   } catch (e) {
     console.log("asyncLogin", e.message);
