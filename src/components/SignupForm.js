@@ -7,9 +7,13 @@ import useFadeIn from "../libs/useFadeIn";
 const useStyles = makeStyles(theme => ({
   form: { textAlign: "center" },
   input: {
-    backgroundColor: "#E8F2FD",
+    backgroundColor: "white",
     width: "243px",
     color: "#715F61",
+	borderRadius: "10px",
+	paddingTop:"5px",
+	paddingLeft:"5px",
+	paddingRight:"5px",
   },
   signupButton: {
     backgroundColor: "#008CF0",
@@ -29,10 +33,11 @@ const useStyles = makeStyles(theme => ({
 
 const StyledSelect = withStyles({
   root: {
-    backgroundColor: "#E8F2FD",
+    backgroundColor: "white",
     padding: "10.5px 14px",
-    width: "198px",
-    color: "#715F61",
+    width: "208px",
+    color: "#715F61",	
+	borderRadius: "15px",
   },
   input: {
     padding: 0,
@@ -61,14 +66,16 @@ const SignupForm = function ({
         signup();
       }}
     >
+	  <Box pb={1} pr={28}><b style={{fontSize:"0.8rem"}}>이름</b></Box> 
       <TextField
         className={classes.input}
         size="small"
-        variant="outlined"
+        variant="standard"
         placeholder="이름 입력"
         onChange={e => onChangeName(e.target.value)}
       />
       <Box mt={2} />
+	  <Box pb={1} pr={26}><b style={{fontSize:"0.8rem"}}>통신사</b></Box> 
       <StyledSelect
         defaultValue={1}
         variant="outlined"
@@ -94,49 +101,53 @@ const SignupForm = function ({
         </MenuItem>
       </StyledSelect>
       <Box mt={2} />
+	  <Box pb={1} pr={24}><b style={{fontSize:"0.8rem"}}>전화번호</b></Box>
       <TextField
         className={classes.input}
         size="small"
-        variant="outlined"
+        variant="standard"
         placeholder="전화번호 입력"
         onChange={e => onChangePhone(e.target.value)}
       />
       <Box mt={2} />
+	  <Box pb={1} pr={26}><b style={{fontSize:"0.8rem"}}>이메일</b></Box>
       <TextField
         className={classes.input}
         size="small"
-        variant="outlined"
+        variant="standard"
         placeholder="이메일 입력"
         onChange={e => onChangeEmail(e.target.value)}
       />
       <Box mt={2} />
-      <Box mt={2} />
+	  <Box pb={1} pr={26}><b style={{fontSize:"0.8rem"}}>아이디</b></Box>
       <TextField
         className={classes.input}
         size="small"
-        variant="outlined"
+        variant="standard"
         placeholder="아이디 입력"
         onChange={e => onChangeId(e.target.value)}
       />
       <Box mt={2} />
+	  <Box pb={1} pr={24}><b style={{fontSize:"0.8rem"}}>비밀번호</b></Box>
       <TextField
         className={classes.input}
         size="small"
-        variant="outlined"
+        variant="standard"
         type="password"
         placeholder="비밀번호 입력"
         onChange={e => onChangePassword(e.target.value)}
       />
       <Box mt={2} />
+	  <Box pb={1} pr={19}><b style={{fontSize:"0.8rem"}}>비밀번호 확인</b></Box>
       <TextField
         className={classes.input}
         size="small"
-        variant="outlined"
+        variant="standard"
         type="password"
         placeholder="비밀번호 확인"
         onChange={e => onChangePasswordConfirm(e.target.value)}
       />
-      <Box mt={2} />
+      <Box mt={4} />
       <Box pl="15px">
         <Button
           variant="contained"

@@ -4,6 +4,7 @@ import { LoginForm } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { change_id, change_password, reset } from "../modules/login";
 import { log_in } from "../modules/user";
+import swal from "sweetalert";
 
 const LoginFormContainer = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,10 @@ const LoginFormContainer = () => {
     [dispatch]
   );
   const login = useCallback(() => {
+    if (!id || !password) {
+      swal(`아이디와 비밀번호를 입력해주세요.`);
+      return;
+    }
     dispatch(log_in(id, password));
   }, [dispatch, id, password]);
 

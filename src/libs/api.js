@@ -1,29 +1,7 @@
 import axios from "axios";
 import swal from "sweetalert";
-
-function getCookie(cookieName) {
-  var cookieValue = null;
-  if (document.cookie) {
-    var array = document.cookie.split(escape(cookieName) + "=");
-    if (array.length >= 2) {
-      var arraySub = array[1].split(";");
-      cookieValue = unescape(arraySub[0]);
-    }
-  }
-  return cookieValue;
-}
-
-function setCookie(name, value, minutes) {
-        if (minutes) {
-                var date = new Date();
-                date.setTime(date.getTime() + (minutes * 60 * 1000));
-                var expires = "; expires=" + date.toGMTString();
-        } else {
-               var expires = "";
-        }
-        
-        document.cookie = name + "=" + value + expires + "; path=/";
-}
+import getCookie from "./getCookie";
+import setCookie from "./setCookie";
 
 export const asyncSignUp = async ({
   name,
@@ -64,13 +42,16 @@ export const asyncSignUp = async ({
 export const asyncGetUser = async () => {
   const token = getCookie("user");
   try {
-    const response = await axios.get("http://3.34.2.185:8000/api/user/getUser", {
-      headers: {
-		  token: token,
-	  } 
-    });
-	localStorage.setItem('user', JSON.stringify(response.data))
-	return response.data;
+    const response = await axios.get(
+      "http://3.34.2.185:8000/api/user/getUser",
+      {
+        headers: {
+          token: token,
+        },
+      }
+    );
+    localStorage.setItem("user", JSON.stringify(response.data));
+    return response.data;
   } catch (e) {
     return;
   }
@@ -86,10 +67,10 @@ export const asyncLogin = async ({ id, password }) => {
       },
       { withCredentials: true, crossDomain: true }
     );
-    const {token} = response.data;
-	setCookie("user", token, 30);
+    const { token } = response.data;
+    setCookie("user", token, 30);
     response = await asyncGetUser();
-	return response;
+    return response;
   } catch (e) {
     swal("아이디 혹은 비밀번호가 일치하지 않습니다.").then(() => {
       window.history.pushState({}, "", "/");
