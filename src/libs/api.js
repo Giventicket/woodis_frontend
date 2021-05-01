@@ -53,7 +53,7 @@ export const asyncGetUser = async () => {
     localStorage.setItem("user", JSON.stringify(response.data));
     return response.data;
   } catch (e) {
-	  console.log("asyncGetUser", e);
+	  console.log("asyncGetUser", e.message);
     return;
   }
 };
@@ -74,7 +74,7 @@ export const asyncLogin = async ({ id, password }) => {
 	console.log(response);
     return response;
   } catch (e) {
-    console.log("asyncLogin", e);
+    console.log("asyncLogin", e.message);
     swal("아이디 혹은 비밀번호가 일치하지 않습니다.").then(() => {
       window.history.pushState({}, "", "/");
       window.location.reload();
