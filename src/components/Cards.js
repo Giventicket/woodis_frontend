@@ -133,8 +133,7 @@ const Cards = function () {
                     xs
                     key={index}
                     style={{
-                      backgroundColor:"white",
-					  borderRadius:"10px",
+						outline:"auto",
 					  borderColor:"blue",
 					  paddingLeft:"0.25rem",
 					  paddingRight:"0.25rem",
