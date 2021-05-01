@@ -2,11 +2,13 @@ import React from "react";
 import ConsumptionBox from "./ConsumptionBox";
 import { Grid, Box } from "@material-ui/core";
 
-const MonthLine = function ({ month }) {
+const MonthLine = function ({ month, totalConsumption }) {
   return (
     <Grid container style={{ backgroundColor: "white" }}>
       <Grid item xs style={{ textAlign: "center" }}>
-        <b style={{ fontSize: "2rem" }}>{`${month}월 소비달력`}</b>
+        <b
+          style={{ fontSize: "2rem" }}
+        >{`${month}월 총 소비 : ${totalConsumption}`}</b>
       </Grid>
     </Grid>
   );
@@ -83,7 +85,7 @@ const ConsumptionPanel = function () {
     <Grid container>
       <Grid item xs={0} sm={0} md={0} lg={2}></Grid>
       <Grid item xs={12} sm={12} md={12} lg={8}>
-        <MonthLine month="5" />
+        <MonthLine month="5" totalConsumption={1000000} />
         <Box pt={2} />
         <IndexLine names={names} />
         <DataLine data={data1} />

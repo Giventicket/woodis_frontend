@@ -44,9 +44,9 @@ function Calendar() {
         <Grid
           item
           xs={12}
-          sm={12}
-          md={12}
-          lg={8}
+          sm={9}
+          md={9}
+          lg={9}
           style={{ background: "linear-gradient(white, #DAF4FD)" }}
         >
           <ConsumptionPanel />
@@ -54,9 +54,9 @@ function Calendar() {
         <Grid
           item
           xs={12}
-          sm={12}
-          md={12}
-          lg={4}
+          sm={3}
+          md={3}
+          lg={3}
           style={{ background: "linear-gradient(white, #DAF4FD)" }}
         >
           <ConsumptionBoard />
