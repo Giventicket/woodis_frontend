@@ -59,7 +59,7 @@ const SignupForm = function ({
 
   return (
     <form
-      method="post"
+      method="POST"
       className={classes.form}
       {...fadeIn}
       onSubmit={e => {
