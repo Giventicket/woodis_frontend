@@ -40,11 +40,13 @@ function Calendar() {
         <CalendarTodayIcon style={{ color: "#008CE0", fontSize: iconSize }} />
       </SingleMenu>
       <Box pt={4} />
-      <Grid container spacing={1} style={{ backgroundColor: "transparent" }}>
+      <Grid container style={{ backgroundColor: "transparent" }}>
         <Grid
           item
           xs={12}
-          sm={7}
+          sm={12}
+          md={12}
+          lg={8}
           style={{ background: "linear-gradient(white, #DAF4FD)" }}
         >
           <ConsumptionPanel />
@@ -52,7 +54,9 @@ function Calendar() {
         <Grid
           item
           xs={12}
-          sm={5}
+          sm={12}
+          md={12}
+          lg={4}
           style={{ background: "linear-gradient(white, #DAF4FD)" }}
         >
           <ConsumptionBoard />

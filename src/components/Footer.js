@@ -26,7 +26,7 @@ const Footer = function () {
           marginLeft: "0.5rem",
         }}
       >
-        <InstagramIcon />
+        <InstagramIcon style={{ color: "#008CE0" }} />
       </a>
       <a
         href="https://www.facebook.com/profile.php?id=100007800972752"
@@ -36,7 +36,7 @@ const Footer = function () {
           marginLeft: "0.5rem",
         }}
       >
-        <FacebookIcon />
+        <FacebookIcon style={{ color: "#008CE0" }} />
       </a>
       <br />
       김대환: Backend Developer
@@ -52,7 +52,7 @@ const Footer = function () {
           marginLeft: "0.5rem",
         }}
       >
-        <GitHubIcon />
+        <GitHubIcon style={{ color: "#008CE0" }} />
       </a>
       <br />
     </div>

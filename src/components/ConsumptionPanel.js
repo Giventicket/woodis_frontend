@@ -1,7 +1,6 @@
 import React from "react";
 import ConsumptionBox from "./ConsumptionBox";
 import { Grid, Box } from "@material-ui/core";
-import { isTablet, isMobile } from "react-device-detect";
 
 const MonthLine = function ({ month }) {
   return (
@@ -42,10 +41,6 @@ const DataLine = function ({ data }) {
 };
 
 const ConsumptionPanel = function () {
-  let margin = 2;
-  if (!isTablet && isMobile) {
-    margin = 0;
-  }
   const names = ["일", "월", "화", "수", "목", "금", "토"];
   const data1 = [
     { day: 1, consumption: 1000 },
@@ -86,17 +81,17 @@ const ConsumptionPanel = function () {
 
   return (
     <Grid container>
-      <Grid item xs={0} sm={2}></Grid>
-      <Grid item xs>
-        <MonthLine month="5" margin={margin} />
-        <Box pt={2} sm />
-        <IndexLine names={names} margin={margin} />
-        <DataLine data={data1} margin={margin} />
-        <DataLine data={data2} margin={margin} />
-        <DataLine data={data3} margin={margin} />
-        <DataLine data={data4} margin={margin} />
+      <Grid item xs={0} sm={0} md={0} lg={2}></Grid>
+      <Grid item xs={12} sm={12} md={12} lg={8}>
+        <MonthLine month="5" />
+        <Box pt={2} />
+        <IndexLine names={names} />
+        <DataLine data={data1} />
+        <DataLine data={data2} />
+        <DataLine data={data3} />
+        <DataLine data={data4} />
       </Grid>
-      <Grid item xs={0} sm={2}></Grid>
+      <Grid item xs={0} sm={0} md={0} lg={2}></Grid>
     </Grid>
   );
 };

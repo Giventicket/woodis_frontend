@@ -50,8 +50,9 @@ export const asyncGetUser = async () => {
         },
       }
     );
-    localStorage.setItem("user", JSON.stringify(response.data[0]));
-    return response.data[0];
+    console.log("response user/getUser:", response);
+    localStorage.setItem("user", JSON.stringify(response.data));
+    return response.data;
   } catch (e) {
     console.log("asyncGetUser", e.message);
     return;
@@ -68,7 +69,7 @@ export const asyncLogin = async ({ id, password }) => {
     console.log("response auth/login :", response);
     setCookie("user", token, 30);
     response = await asyncGetUser();
-    console.log("response user/getUser:", response);
+    console.log("response asyncGetUser:", response);
     return response;
   } catch (e) {
     console.log("asyncLogin", e.message);
