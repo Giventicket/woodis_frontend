@@ -8,6 +8,7 @@ const LOGIN_SUCCESS = "user/LOGIN_SUCCESS";
 const GETUSER = "user/GETUSER";
 const GETUSER_SUCCESS = "user/GETUSER_SUCCESS";
 const SETUSER = "user/SETUSER";
+const SETCURRENTACC = "user/SETCURRENTACC";
 const RESET = "user/RESET";
 
 export const log_in = createAction(LOGIN, (id, password) => ({
@@ -15,8 +16,9 @@ export const log_in = createAction(LOGIN, (id, password) => ({
   password,
 }));
 export const get_user = createAction(GETUSER);
-export const set_user = createAction(SETUSER, user=>user);
+export const set_user = createAction(SETUSER, user => user);
 export const reset = createAction(RESET);
+export const set_currentAcc = createAction(SETCURRENTACC, index => index);
 
 const asyncLogin = createRequestSaga(LOGIN, api.asyncLogin);
 const asyncGetUser = createRequestSaga(GETUSER, api.asyncGetUser);
@@ -28,14 +30,27 @@ export function* userSaga() {
 
 const initialState = {
   user: null,
+  currentAcc: null,
 };
 
 const user = handleActions(
   {
-    [RESET]: state => ({ user: null }),
-    [LOGIN_SUCCESS]: (state, { payload: user }) => ({ ...state, user }),
-    [GETUSER_SUCCESS]: (state, { payload: user }) => ({ ...state, user }),
-	[SETUSER]: (state, { payload: user }) => ({ ...state, user }),
+    [RESET]: state => initialState,
+    [LOGIN_SUCCESS]: (state, { payload: user }) => ({
+      ...state,
+      user,
+      currentAcc: user.accList[0],
+    }),
+    [GETUSER_SUCCESS]: (state, { payload: user }) => ({
+      ...state,
+      user,
+      currentAcc: user.accList[0],
+    }),
+    [SETUSER]: (state, { payload: user }) => ({ ...state, user }),
+    [SETCURRENTACC]: (state, { payload: index }) => ({
+      ...state,
+      currentAcc: state.user.accList[index],
+    }),
   },
   initialState
 );

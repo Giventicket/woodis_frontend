@@ -77,15 +77,7 @@ const signup = handleActions(
       ...state,
       passwordConfirm,
     }),
-    [RESET]: state => ({
-      name: null,
-      agency: "1",
-      phone: null,
-      email: null,
-      id: null,
-      password: null,
-      passwordConfirm: null,
-    }),
+    [RESET]: state => initialState,
     [SIGNUP_SUCCESS]: state => state,
   },
   initialState

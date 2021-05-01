@@ -6,9 +6,7 @@ import { useSelector } from "react-redux";
 
 function Main() {
   const user = useSelector(state => state.user.user);
-  useEffect(() => {
-	  console.log(user);
-  }, [user]);
+  useEffect(() => {}, [user]);
   return (
     <>
       <Box pt={2} />
@@ -18,7 +16,7 @@ function Main() {
         WOODIS와 함께 나의 소비달력, 맞춤형 우리카드, 할인 추천을 위한 카드정보
         구독 서비스를 활용해보세요.
       </Description>
-      <Box pt={8} />
+      <Box pt={4} />
       {user ? (
         <UserDescriptionContainer name={user.name} />
       ) : (

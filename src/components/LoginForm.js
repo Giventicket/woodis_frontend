@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Box, TextField, Button, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { isTablet, isMobile } from "react-device-detect";
 
 const useStyles = makeStyles(theme => ({
   grid: {
@@ -15,18 +16,23 @@ const useStyles = makeStyles(theme => ({
     color: "#715F61",
   },
   links: { paddingTop: "1rem", textAlign: "center" },
-  button: {
-    height: "97.5px",
+  button: ({ buttonHeight }) => ({
+    height: buttonHeight,
     color: "white",
     backgroundColor: "#008CF0",
     "&:hover": {
       backgroundColor: "#008CE0",
     },
-  },
+  }),
 }));
 
 const LoginForm = function ({ onChangeId, onChangePassword, login }) {
-  const classes = useStyles();
+  let buttonHeight = 97.5;
+  if (!isTablet && isMobile) {
+    buttonHeight = 73.75;
+  }
+  const classes = useStyles({ buttonHeight });
+
   return (
     <>
       <form
