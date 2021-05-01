@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { Box } from "@material-ui/core";
-import { Logo, Description, Menu } from "../components";
+import { Logo, Description, Menu, Footer } from "../components";
 import { LoginFormContainer, UserDescriptionContainer } from "../containers";
 import { useSelector } from "react-redux";
 
 function Main() {
-  const user = useSelector(state => state.user.user);
+  const user = useSelector((state) => state.user.user);
   useEffect(() => {}, [user]);
   return (
     <>
@@ -24,6 +24,7 @@ function Main() {
       )}
       <Box pt={8} />
       <Menu name={user ? user.name : null} />
+      <Footer></Footer>
     </>
   );
 }
