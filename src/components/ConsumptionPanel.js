@@ -7,12 +7,13 @@ const StyledSelect = withStyles({
   root: {
     backgroundColor: "white",
     padding: "10.5px 14px",
-    width: "208px",
+    width: "3rem",
     color: "#715F61",
     borderRadius: "15px",
   },
   input: {
     padding: 0,
+    verticalAlign: "super",
   },
 })(Select);
 
