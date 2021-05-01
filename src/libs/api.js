@@ -48,7 +48,7 @@ export const asyncGetUser = async () => {
         headers: {
           token: token,
         },
-      }, {withCredentials: true}
+      },
     );
     localStorage.setItem("user", JSON.stringify(response.data));
     return response.data;
@@ -64,7 +64,7 @@ export const asyncLogin = async ({ id, password }) => {
       {
         id: id,
         password: password,
-      },{withCredentials: true}
+      }
     );
     const { token } = response.data;
 	console.log(token);
