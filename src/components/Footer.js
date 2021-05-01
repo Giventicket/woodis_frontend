@@ -6,10 +6,9 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 const style = {
   textAlign: "center",
   backgroundColor: "white",
-  lineHeight: "30px",
+  lineHeight: "2rem",
   fontSize: "15px",
   color: "#707070",
-  lineHeight: "2rem",
 };
 
 const Footer = function () {

@@ -1,8 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Box, TextField, Button, Grid, Typography } from "@material-ui/core";
+import {
+  Box,
+  TextField,
+  Button,
+  Grid,
+  Typography,
+  useMediaQuery,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { isTablet, isMobile } from "react-device-detect";
 
 const useStyles = makeStyles(theme => ({
   grid: {
@@ -28,7 +34,9 @@ const useStyles = makeStyles(theme => ({
 
 const LoginForm = function ({ onChangeId, onChangePassword, login }) {
   let buttonHeight = 97.5;
-  if (!isTablet && isMobile) {
+  const matches = useMediaQuery("(max-width:1280px)");
+  if (matches) {
+    console.log(matches);
     buttonHeight = 73.75;
   }
   const classes = useStyles({ buttonHeight });

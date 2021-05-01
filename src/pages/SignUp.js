@@ -15,7 +15,7 @@ function SignUp() {
       </Description>
       <Box pt={4} />
       <SignupFormContainer />
-      <Box pt={8} />
+      <Box pt={4} />
       <Footer></Footer>
       <Box pt={4} />
     </>
