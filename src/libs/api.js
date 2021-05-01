@@ -42,37 +42,30 @@ export const asyncSignUp = async ({
 export const asyncGetUser = async () => {
   const token = getCookie("user");
   try {
-    const response = await axios.get(
-      "/api/user/getUser",
-      {
-        headers: {
-          token: token,
-        },
+    const response = await axios.get("/api/user/getUser", {
+      headers: {
+        token: token,
       },
-    );
-    localStorage.setItem("user", JSON.stringify(response.data));
-    return response.data;
+    });
+    localStorage.setItem("user", JSON.stringify(response.data[0]));
+    return response.data[0];
   } catch (e) {
-	  console.log("asyncGetUser", e.message);
+    console.log("asyncGetUser", e.message);
     return;
   }
 };
 
 export const asyncLogin = async ({ id, password }) => {
   try {
-	console.log("hello");
-    let response = await axios.post(
-      "/api/auth/login",
-      {
-        id: id,
-        password: password,
-      }
-    );
+    let response = await axios.post("/api/auth/login", {
+      id: id,
+      password: password,
+    });
     const { token } = response.data;
-	console.log(token);
+    console.log("token", token);
     setCookie("user", token, 30);
     response = await asyncGetUser();
-	console.log(response);
+    console.log("response.data", response.data);
     return response;
   } catch (e) {
     console.log("asyncLogin", e.message);

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@material-ui/core";
-import { Logo, Description } from "../components";
+import { Logo, Description, Footer } from "../components";
 import { SignupFormContainer } from "../containers";
 
 function SignUp() {
@@ -15,6 +15,9 @@ function SignUp() {
       </Description>
       <Box pt={4} />
       <SignupFormContainer />
+      <Box pt={8} />
+      <Footer></Footer>
+      <Box pt={4} />
     </>
   );
 }

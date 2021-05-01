@@ -6,6 +6,7 @@ import {
   SingleMenu,
   ConsumptionPanel,
   ConsumptionBoard,
+  Footer,
 } from "../components";
 import { UserDescriptionContainer } from "../containers";
 import { useSelector } from "react-redux";
@@ -40,13 +41,26 @@ function Calendar() {
       </SingleMenu>
       <Box pt={4} />
       <Grid container spacing={1} style={{ backgroundColor: "transparent" }}>
-        <Grid item xs={12} sm={7}>
+        <Grid
+          item
+          xs={12}
+          sm={7}
+          style={{ background: "linear-gradient(white, #DAF4FD)" }}
+        >
           <ConsumptionPanel />
         </Grid>
-        <Grid item xs={12} sm={5} >
+        <Grid
+          item
+          xs={12}
+          sm={5}
+          style={{ background: "linear-gradient(white, #DAF4FD)" }}
+        >
           <ConsumptionBoard />
         </Grid>
       </Grid>
+      <Box pt={8} />
+      <Footer></Footer>
+      <Box pt={4} />
     </>
   );
 }

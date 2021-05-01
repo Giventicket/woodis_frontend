@@ -5,7 +5,7 @@ import { LoginFormContainer, UserDescriptionContainer } from "../containers";
 import { useSelector } from "react-redux";
 
 function Main() {
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector(state => state.user.user);
   useEffect(() => {}, [user]);
   return (
     <>
@@ -24,7 +24,9 @@ function Main() {
       )}
       <Box pt={8} />
       <Menu name={user ? user.name : null} />
+      <Box pt={8} />
       <Footer></Footer>
+      <Box pt={4} />
     </>
   );
 }

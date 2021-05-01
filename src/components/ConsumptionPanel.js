@@ -1,31 +1,31 @@
 import React from "react";
 import ConsumptionBox from "./ConsumptionBox";
-import { Grid } from "@material-ui/core";
+import { Grid, Box } from "@material-ui/core";
 import { isTablet, isMobile } from "react-device-detect";
 
-const MonthLine = function ({month, margin = 2}) {
+const MonthLine = function ({ month }) {
   return (
     <Grid container style={{ backgroundColor: "white" }}>
       <Grid item xs style={{ textAlign: "center" }}>
-          <b style={{fontSize:"2rem"}}>{`${month}월 소비달력`}</b>
-        </Grid>
+        <b style={{ fontSize: "2rem" }}>{`${month}월 소비달력`}</b>
+      </Grid>
     </Grid>
   );
 };
 
-const IndexLine = function ({ month, names, margin=2 }) {
+const IndexLine = function ({ names }) {
   return (
     <Grid container style={{ backgroundColor: "white" }}>
       {names.map(name => (
         <Grid item xs style={{ textAlign: "center" }}>
-          <ConsumptionBox name={name} key={`IndexLine ${name}`}/>
+          <ConsumptionBox name={name} key={`IndexLine ${name}`} />
         </Grid>
       ))}
     </Grid>
   );
 };
 
-const DataLine = function ({ data, margin=2 }) {
+const DataLine = function ({ data }) {
   return (
     <Grid container style={{ backgroundColor: "white" }}>
       {data.map(prop => (
@@ -33,7 +33,7 @@ const DataLine = function ({ data, margin=2 }) {
           <ConsumptionBox
             day={prop.day}
             consumption={prop.consumption}
-			key={`DataLine ${prop.day}`}
+            key={`DataLine ${prop.day}`}
           />
         </Grid>
       ))}
@@ -42,7 +42,7 @@ const DataLine = function ({ data, margin=2 }) {
 };
 
 const ConsumptionPanel = function () {
-  let margin = 2; 
+  let margin = 2;
   if (!isTablet && isMobile) {
     margin = 0;
   }
@@ -85,14 +85,19 @@ const ConsumptionPanel = function () {
   ];
 
   return (
-    <>
-	  <MonthLine month="5" margin={margin}/>
-      <IndexLine names={names} margin={margin}/>
-      <DataLine data={data1} margin={margin}/>
-      <DataLine data={data2} margin={margin}/>
-      <DataLine data={data3} margin={margin}/>
-      <DataLine data={data4} margin={margin}/>
-    </>
+    <Grid container>
+      <Grid item xs={0} sm={2}></Grid>
+      <Grid item xs>
+        <MonthLine month="5" margin={margin} />
+        <Box pt={2} sm />
+        <IndexLine names={names} margin={margin} />
+        <DataLine data={data1} margin={margin} />
+        <DataLine data={data2} margin={margin} />
+        <DataLine data={data3} margin={margin} />
+        <DataLine data={data4} margin={margin} />
+      </Grid>
+      <Grid item xs={0} sm={2}></Grid>
+    </Grid>
   );
 };
 export default React.memo(ConsumptionPanel);
