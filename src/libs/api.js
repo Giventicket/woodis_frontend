@@ -12,7 +12,7 @@ export const asyncSignUp = async ({
   password,
 }) => {
   try {
-    await axios.post("/api/auth/signup", {
+    await axios.post("http://3.34.2.185:8000/api/auth/signup", {
       name: name,
       agency: agency,
       phone: phone,
@@ -42,11 +42,14 @@ export const asyncSignUp = async ({
 export const asyncGetUser = async () => {
   const token = getCookie("user");
   try {
-    const response = await axios.get("/api/user/getUser", {
-      headers: {
-        token: token,
-      },
-    });
+    const response = await axios.get(
+      "http://3.34.2.185:8000/api/user/getUser",
+      {
+        headers: {
+          token: token,
+        },
+      }
+    );
     localStorage.setItem("user", JSON.stringify(response.data[0]));
     return response.data[0];
   } catch (e) {
@@ -57,7 +60,7 @@ export const asyncGetUser = async () => {
 
 export const asyncLogin = async ({ id, password }) => {
   try {
-    let response = await axios.post("/api/auth/login", {
+    let response = await axios.post("http://3.34.2.185:8000/api/auth/login", {
       id: id,
       password: password,
     });
