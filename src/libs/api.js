@@ -80,3 +80,26 @@ export const asyncLogin = async ({ id, password }) => {
     return;
   }
 };
+
+export const asyncGetTranList = async ({ year, acc }) => {
+  try {
+    const token = getCookie("user");
+    let response = await axios.post(
+      "http://3.34.2.185:8000/api/user/getTranList",
+      {
+        year: year,
+        acc: acc,
+      },
+      {
+        headers: {
+          token: token,
+        },
+      }
+    );
+    console.log("response user/getTranList :", response);
+    return response.data;
+  } catch (e) {
+    console.log("asyncGetTransList", e.message);
+    return;
+  }
+};

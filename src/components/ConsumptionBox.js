@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { isTablet, isMobile } from "react-device-detect";
 import queryString from "query-string";
@@ -61,14 +60,11 @@ const useStyles = makeStyles(theme => ({
 const ConsumptionBox = function ({
   name = null,
   date = 1,
-  consumption = 10000,
+  parsedTranList = null,
   location,
 }) {
   const query = queryString.parse(location.search);
   let size = "4rem";
-  if (!isTablet && isMobile) {
-    size = "3.5rem";
-  }
   const activated = date === Number(query.date);
   const classes = useStyles({ size, activated });
   if (name)
@@ -77,16 +73,16 @@ const ConsumptionBox = function ({
         <b>{name}</b>
       </div>
     );
-	if(!date)
-		return null;
-  return (
-    <Link
-      to={`/calendar?month=${query.month}&date=${date}`}
-      className={classes.linkStyle}
-    >
-      <b className={classes.date}>{date}일</b>
-      <span className={classes.consumption}>-{consumption}</span>
-    </Link>
-  );
+  if (!date) return null;
+  if(parsedTranList[date])
+	  return (
+		<Link
+		  to={`/calendar?month=${query.month}&date=${date}`}
+		  className={classes.linkStyle}
+		>
+		  <b className={classes.date}>{date}일</b>
+		  <span className={classes.consumption}>{parsedTranList[date].reduce((prev,next)=>(prev+next.pay),0).toLocaleString()}원</span>
+		</Link>
+	  );
 };
 export default React.memo(withRouter(ConsumptionBox));

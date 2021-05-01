@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Grid } from "@material-ui/core";
 import {
   Logo,
@@ -9,18 +9,34 @@ import {
   Footer,
 } from "../components";
 import { UserDescriptionContainer } from "../containers";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import { isTablet, isMobile } from "react-device-detect";
+import queryString from "query-string";
+import { withRouter } from "react-router-dom";
+import { get_tranList } from "../modules/tranList";
+import getParsedTranList from "../libs/getParsedTranList";
 
-function Calendar() {
+function Calendar({ location }) {
+  const dispatch = useDispatch();
   const user = useSelector(state => state.user.user);
+  const currentAcc = useSelector(state => state.user.currentAcc);
+  const query = queryString.parse(location.search);
+  const tranList = useSelector(state => state.tranList.tranList);
+  const parsedTranList = getParsedTranList(tranList, 2021, Number(query.month));
   let iconSize = 200;
   if (!isTablet && isMobile) {
     iconSize = 100;
   }
 
-  useEffect(() => {}, [user]);
+  useEffect(() => {
+    console.log("currentAcc");
+    if (currentAcc) {
+      dispatch(get_tranList(2021, currentAcc));
+      return;
+    }
+  }, [dispatch, currentAcc]);
+
   if (!user) return <>로그인 후에 사용하세요!</>;
   return (
     <>
@@ -49,7 +65,7 @@ function Calendar() {
           lg={9}
           style={{ background: "linear-gradient(white, #DAF4FD)" }}
         >
-          <ConsumptionPanel />
+          <ConsumptionPanel parsedTranList={parsedTranList} />
         </Grid>
         <Grid
           item
@@ -59,7 +75,7 @@ function Calendar() {
           lg={3}
           style={{ background: "linear-gradient(white, #DAF4FD)" }}
         >
-          <ConsumptionBoard />
+          <ConsumptionBoard parsedTranList={parsedTranList} />
         </Grid>
       </Grid>
       <Box pt={4} />
@@ -69,4 +85,4 @@ function Calendar() {
   );
 }
 
-export default React.memo(Calendar);
+export default React.memo(withRouter(Calendar));

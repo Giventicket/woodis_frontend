@@ -4,6 +4,7 @@ import { Grid, Box, Select, MenuItem } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import queryString from "query-string";
 import { withRouter, Link } from "react-router-dom";
+import getDataList from "../libs/getDataList";
 
 const StyledSelect = withStyles({
   root: {
@@ -18,7 +19,7 @@ const StyledSelect = withStyles({
   },
 })(Select);
 
-const MonthLine = function ({ month, date, totalConsumption }) {
+const MonthLine = function ({ month, totalConsumption }) {
   const monthArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   return (
@@ -28,7 +29,7 @@ const MonthLine = function ({ month, date, totalConsumption }) {
           {monthArray.map((i, index) => (
             <MenuItem value={i} key={index} style={{ padding: 0 }}>
               <Link
-                to={`/calendar?month=${i}&date=${date}`}
+                to={`/calendar?month=${i}&date=${1}`}
                 style={{
                   all: "unset",
                   display: "block",
@@ -41,7 +42,7 @@ const MonthLine = function ({ month, date, totalConsumption }) {
             </MenuItem>
           ))}
         </StyledSelect>
-        <b style={{ fontSize: "2rem" }}>{`월 총 소비 : ${totalConsumption}`}</b>
+        <b style={{ fontSize: "2rem" }}>{`월 총 소비 : ${totalConsumption.toLocaleString()}원`}</b>
       </Grid>
     </Grid>
   );
@@ -59,49 +60,23 @@ const IndexLine = function ({ names }) {
   );
 };
 
-const DataLine = function ({ data }) {
+const DataLine = function ({ data, parsedTranList }) {
   return (
     <Grid container style={{ backgroundColor: "white" }}>
       {data.map((ele, index) => (
         <Grid item xs style={{ textAlign: "center" }} key={index}>
-          <ConsumptionBox date={ele} />
+          <ConsumptionBox date={ele} parsedTranList={parsedTranList}/>
         </Grid>
       ))}
     </Grid>
   );
 };
 
-function getDataList(year, month) {
-  let firstDate = new Date(`${year}-${month}-01`).getDay();
-  let lastDay = new Date(year, (month+1)==13 ? 1 : month+1, -1);
-  let lastDate = lastDay.getDate();
-  let data = [];
-  firstDate = (firstDate+1)%7;
-  console.log(firstDate);
-  if(firstDate!=0)
-	while (--firstDate) data.push(null);
-
-  for (let i = 1; i <= lastDate; i++) data.push(i);
-  while (data.length % 7) data.push(null);
-  let dataList = [];
-  let ele = [];
-  while (data.length !== 0) {
-    ele = [];
-    for (let i = 0; i < 7; i++) ele.push(data.shift());
-    dataList.push(ele);
-  }
-
-
-  return dataList;
-
-}
-
-const ConsumptionPanel = function ({ location }) {
+const ConsumptionPanel = function ({ location, parsedTranList }) {
   const query = queryString.parse(location.search);
   const names = ["일", "월", "화", "수", "목", "금", "토"];
   const dataList = getDataList(2021, query.month);
-  if(!dataList)
-	return null;
+  if (!dataList || !parsedTranList) return null;
   return (
     <Grid container>
       <Grid item xs={false} sm={false} md={false} lg={2}></Grid>
@@ -109,12 +84,20 @@ const ConsumptionPanel = function ({ location }) {
         <MonthLine
           month={query.month}
           date={query.date}
-          totalConsumption={1000000}
+          totalConsumption={parsedTranList.reduce((prev1, next1) => {
+			  if(next1){
+				  let sum = next1.reduce((prev2, next2)=>{
+					  return prev2+next2.pay;
+				  },0);
+				  return prev1+sum;				  
+			  }
+			  return prev1;
+		  },0)}
         />
         <Box pt={2} />
         <IndexLine names={names} />
         {dataList.map((data, index) => (
-          <DataLine data={data} key={index} />
+          <DataLine data={data} parsedTranList={parsedTranList} key={index} />
         ))}
       </Grid>
       <Grid item xs={false} sm={false} md={false} lg={2}></Grid>

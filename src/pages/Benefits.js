@@ -1,20 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Box } from "@material-ui/core";
-import { Logo, Description, SingleMenu, Cards } from "../components";
+import { Logo, Description, SingleMenu, Cards, Footer } from "../components";
 import { UserDescriptionContainer } from "../containers";
 import { useSelector } from "react-redux";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
 import { isTablet, isMobile } from "react-device-detect";
 
 function Benefits() {
-  // const user = useSelector(state => state.user.user);
-  const user = { name: "John" };
+  const user = useSelector(state => state.user.user);
   let iconSize = 200;
   if (!isTablet && isMobile) {
     iconSize = 100;
   }
-
-  useEffect(() => {}, [user]);
   if (!user) return <>로그인 후에 사용하세요!</>;
   return (
     <>
@@ -34,7 +31,11 @@ function Benefits() {
       >
         <CreditCardIcon style={{ color: "#008CE0", fontSize: iconSize }} />
       </SingleMenu>
+      <Box pt={4} />
       <Cards />
+      <Box pt={4} />
+      <Footer />
+      <Box pt={4} />
     </>
   );
 }

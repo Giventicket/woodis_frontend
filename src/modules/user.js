@@ -44,7 +44,11 @@ const user = handleActions(
       console.log(GETUSER_SUCCESS, user);
       return { ...state, user: user, currentAcc: user.accList[0] };
     },
-    [SETUSER]: (state, { payload: user }) => ({ ...state, user }),
+    [SETUSER]: (state, { payload: user }) => ({
+      ...state,
+      user,
+      currentAcc: user.accList[0],
+    }),
     [SETCURRENTACC]: (state, { payload: index }) => ({
       ...state,
       currentAcc: state.user.accList[index],

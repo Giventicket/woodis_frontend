@@ -1,9 +1,10 @@
-import { ViewColumn } from "@material-ui/icons";
 import React from "react";
+import { Box, Button, Grid } from "@material-ui/core";
+import { isTablet, isMobile } from "react-device-detect";
 
 const card1 = {
   name: "카드의 정석 SSO3 NEW-TRO CHECK",
-  benfits: [
+  benefits: [
     {
       title: "1천원 캐시백",
       detail: "편의점, 서점, 베이커리, 패스트푸트, 티머니 충전, 1천원 캐시백",
@@ -22,7 +23,7 @@ const card1 = {
 
 const card2 = {
   name: "카드의 정석 COOKIE CHECK",
-  benfits: [
+  benefits: [
     {
       title: "5천원",
       detail: "CGV, 롯데시네마 5천원 캐시백",
@@ -43,7 +44,7 @@ const card2 = {
 
 const card3 = {
   name: "카드의 정석 CREAM TEENS CHECK",
-  benfits: [
+  benefits: [
     {
       title: "1천원 캐시백",
       detail: "편의점 서점 베이커리, 패스트푸드, 티머니 충천, 1천원 캐시백",
@@ -62,7 +63,7 @@ const card3 = {
 
 const card4 = {
   name: "갤러리아 체크카드",
-  benfits: [
+  benefits: [
     {
       title: "갤러리아백화점 할인체크",
       detail: "갤러리아백화점 5% 현장 할인",
@@ -82,83 +83,153 @@ const card4 = {
 
 const cardList = [card1, card2, card3, card4];
 
-const style = {
-  background: "white",
-  margin: "40px",
-  padding: "30px",
-};
-
-const cardStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  marginTop: "40px",
-  marginBottom: "40px",
-  padding: "10px",
-  borderBottom: "solid",
-};
-
-const cardInfoStyle = {
-  marginLeft: "0px",
-};
-
-const benefitsStyle = {
-  display: "flex",
-  width: "600px",
-};
-
-const benefitStyle = {
-  marginLeft: "10px",
-  marginRight: "10px",
-  fontSize: "15px",
-};
-
-const buttonListStyle = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
-};
-
-const buttonStyle = {
-  padding: "10px",
-  borderRadius: "10px",
-  margin: "0px",
-};
-
 const Cards = function () {
+  let padding = false;
+  if (!isTablet && isMobile) {
+    padding = true;
+  }
   return (
-    <div style={style}>
+    <Box pl={8} pr={8}>
       {cardList.map((card, index) => (
-        <div style={cardStyle} key={index}>
-          <img src={card.imgURL} alt="" />
-          <div style={cardInfoStyle}>
-            <h3>{card.name}</h3>
-            <section style={benefitsStyle}>
-              {card.benfits.map((benefit, index) => (
-                <div style={benefitStyle} key={index}>
-                  <div style={{ fontWeight: "bold" }}>{benefit.title}</div>
-                  <div>{benefit.detail}</div>
-                </div>
-              ))}
-            </section>
-          </div>
-          <section style={buttonListStyle}>
-            <button style={buttonStyle}>내가 이 카드를 썼더라면</button>
-            <a
-              href="https://pc.wooricard.com/dcpc/yh1/crd/crd01/H1CRD101S02.do"
-              target="_blank"
+        <>
+          <Grid container key={index}>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={12}
+              lg
+              xl
+              style={{ textAlign: "center" }}
             >
-              <button style={buttonStyle}>자세히 보기</button>
-            </a>
-            <a
-              href="https://pc.wooricard.com/dcpc/yh1/crd/crd01/H1CRD101S03.do"
-              target="_blank"
+              <img src={card.imgURL} alt=""/>
+            </Grid>
+            {padding ? (
+              <Grid item xs={12}>
+                <Box pt={2} />
+              </Grid>
+            ) : null}
+            <Grid
+              item
+              container
+              direction="column"
+              xs={12}
+              sm={12}
+              md={12}
+              lg
+              xl
             >
-              <button style={buttonStyle}>카드 신청</button>
-            </a>
-          </section>
-        </div>
+              <Grid item xs style={{ textAlign: "center", fontSize: "1.2rem" }}>
+                <b>{card.name}</b>
+              </Grid>
+              <Grid item container xs>
+					<Grid item xs={1}/>
+                {card.benefits.map((benefit, index) => (
+				<>
+                  <Grid
+                    container
+                    direction="column"
+                    item
+                    xs
+                    key={index}
+                    style={{
+                      backgroundColor:"white",
+					  borderRadius:"10px",
+					  borderColor:"blue",
+					  paddingLeft:"0.25rem",
+					  paddingRight:"0.25rem",
+					  borderWidth:"2px"
+                    }}
+                  >
+                    <Grid
+                      item
+                      xs
+                      style={{
+                        fontSize: "0.8rem",
+                        textAlign: "center",
+                      }}
+                    >
+                      <b>{`${benefit.title}`}</b>
+                    </Grid>
+                    <Grid
+                      item
+                      xs
+                      style={{ fontSize: "0.6rem", textAlign: "center",}}
+                    >{`[${benefit.detail}]`}</Grid>
+                  </Grid>
+				</>
+                ))}
+				<Grid item xs={1}/>
+              </Grid>
+              <Grid item xs></Grid>
+            </Grid>
+            {padding ? (
+              <Grid item xs={12}>
+                <Box pt={2} />
+              </Grid>
+            ) : null}
+            <Grid
+              item
+              container
+              xs={12}
+              sm={12}
+              md={12}
+              lg
+              xl
+              direction="column"
+              style={{ placeSelf: "center", textAlign: "center" }}
+              spacing={1}
+            >
+              <Grid item xs>
+                <Button
+                  variant="outlined"
+                  fullWidth={true}
+                  style={{
+                    fontWeight: "700",
+                    maxWidth: "15rem",
+                    borderWidth: "3px",
+                    borderColor: "black",
+                  }}
+                >
+                  내가 이 카드를 썼더라면
+                </Button>
+              </Grid>
+              <Grid item xs>
+                <Button
+                  href="https://pc.wooricard.com/dcpc/yh1/crd/crd01/H1CRD101S02.do"
+                  target="_blank"
+                  variant="contained"
+                  fullWidth={true}
+                  style={{
+                    backgroundColor: "black",
+                    color: "white",
+                    maxWidth: "15rem",
+                  }}
+                >
+                  자세히 보기
+                </Button>
+              </Grid>
+              <Grid item xs>
+                <Button
+                  href="https://pc.wooricard.com/dcpc/yh1/crd/crd01/H1CRD101S03.do"
+                  variant="outlined"
+                  target="_blank"
+                  fullWidth={true}
+                  style={{
+                    backgroundColor: "#3FD0FF",
+                    color: "white",
+                    maxWidth: "15rem",
+                  }}
+                >
+                  카드 신청
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+          <hr />
+        </>
       ))}
-    </div>
+    </Box>
   );
 };
 

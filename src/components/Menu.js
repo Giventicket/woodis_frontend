@@ -57,7 +57,7 @@ const Menu = function ({ name }) {
   }
   return (
     <Grid container className={classes.grid}>
-      <Grid item xs={0} sm />
+      <Grid item xs={false} sm />
       <Grid item xs sm>
         <Item
           delay={0}
@@ -77,7 +77,7 @@ const Menu = function ({ name }) {
           <SubscriptionsIcon style={{ color: "#008CE0", fontSize: iconSize }} />
         </Item>
       </Grid>
-      <Grid item xs={0} sm />
+      <Grid item xs={false} sm />
     </Grid>
   );
 };
