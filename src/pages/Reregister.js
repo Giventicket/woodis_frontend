@@ -1,9 +1,9 @@
 import React from "react";
 import { Box } from "@material-ui/core";
 import { Logo, Description, Footer } from "../components";
-import { SignupFormContainer } from "../containers";
+import { ReregisterFormContainer } from "../containers";
 
-function Searchid() {
+function Reregister() {
   return (
     <>
       <Box pt={2} />
@@ -14,7 +14,7 @@ function Searchid() {
         구독 서비스를 활용해보세요.
       </Description>
       <Box pt={4} />
-      <SignupFormContainer />
+      <ReregisterFormContainer />
       <Box pt={8} />
       <Footer></Footer>
       <Box pt={4} />
@@ -22,4 +22,4 @@ function Searchid() {
   );
 }
 
-export default React.memo(Searchid);
+export default React.memo(Reregister);

@@ -9,6 +9,8 @@ import SingleMenu from "./SingleMenu";
 import ConsumptionBoard from "./ConsumptionBoard";
 import ConsumptionPanel from "./ConsumptionPanel";
 import Cards from "./Cards";
+import SearchIDForm from "./SearchIDForm";
+import ReregisterForm from "./ReregisterForm";
 
 export {
   Logo,
@@ -22,4 +24,6 @@ export {
   SingleMenu,
   ConsumptionBoard,
   ConsumptionPanel,
+  SearchIDForm,
+  ReregisterForm,
 };
