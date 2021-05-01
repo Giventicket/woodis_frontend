@@ -6,11 +6,9 @@ import { isTablet, isMobile } from "react-device-detect";
 const MonthLine = function ({month, margin = 2}) {
   return (
     <Grid container style={{ backgroundColor: "white" }}>
-      <Grid item xs={margin} style={{backgroundImage: "linear-gradient(to right, #DAF4FD, white)"}}/>
       <Grid item xs style={{ textAlign: "center" }}>
           <b style={{fontSize:"2rem"}}>{`${month}월 소비달력`}</b>
         </Grid>
-      <Grid item xs={margin} style={{backgroundImage: "linear-gradient(to left, #DAF4FD, white)"}}/>
     </Grid>
   );
 };
@@ -18,13 +16,11 @@ const MonthLine = function ({month, margin = 2}) {
 const IndexLine = function ({ month, names, margin=2 }) {
   return (
     <Grid container style={{ backgroundColor: "white" }}>
-      <Grid item xs={margin} style={{backgroundImage: "linear-gradient(to right, #DAF4FD, white)"}}/>
       {names.map(name => (
         <Grid item xs style={{ textAlign: "center" }}>
           <ConsumptionBox name={name} key={`IndexLine ${name}`}/>
         </Grid>
       ))}
-      <Grid item xs={margin} style={{backgroundImage: "linear-gradient(to left, #DAF4FD, white)"}}/>
     </Grid>
   );
 };
@@ -32,7 +28,6 @@ const IndexLine = function ({ month, names, margin=2 }) {
 const DataLine = function ({ data, margin=2 }) {
   return (
     <Grid container style={{ backgroundColor: "white" }}>
-      <Grid item xs={margin} style={{backgroundImage: "linear-gradient(to right, #DAF4FD, white)"}}/>
       {data.map(prop => (
         <Grid item xs style={{ textAlign: "center" }}>
           <ConsumptionBox
@@ -42,7 +37,6 @@ const DataLine = function ({ data, margin=2 }) {
           />
         </Grid>
       ))}
-      <Grid item xs={margin} style={{backgroundImage: "linear-gradient(to left, #DAF4FD, white)"}}/>
     </Grid>
   );
 };

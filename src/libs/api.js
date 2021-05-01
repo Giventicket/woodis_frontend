@@ -48,7 +48,8 @@ export const asyncGetUser = async () => {
         headers: {
           token: token,
         },
-      }
+      },
+	  { withCredentials: true, crossDomain: true }
     );
     localStorage.setItem("user", JSON.stringify(response.data));
     return response.data;
