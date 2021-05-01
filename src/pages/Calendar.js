@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
-import { Box } from "@material-ui/core";
-import { Logo, Description, SingleMenu } from "../components";
+import { Box, Grid } from "@material-ui/core";
+import {
+  Logo,
+  Description,
+  SingleMenu,
+  ConsumptionPanel,
+  ConsumptionBoard,
+} from "../components";
 import { UserDescriptionContainer } from "../containers";
 import { useSelector } from "react-redux";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
@@ -32,6 +38,15 @@ function Calendar() {
       >
         <CalendarTodayIcon style={{ color: "#008CE0", fontSize: iconSize }} />
       </SingleMenu>
+      <Box pt={4} />
+      <Grid container spacing={1} style={{ backgroundColor: "transparent" }}>
+        <Grid item xs={12} sm={7}>
+          <ConsumptionPanel />
+        </Grid>
+        <Grid item xs={12} sm={5} >
+          <ConsumptionBoard />
+        </Grid>
+      </Grid>
     </>
   );
 }
