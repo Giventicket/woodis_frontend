@@ -50,28 +50,29 @@ export const asyncGetUser = async () => {
         },
       }
     );
+    console.log("response user/getUser:", response);
     localStorage.setItem("user", JSON.stringify(response.data));
     return response.data;
   } catch (e) {
+    console.log("asyncGetUser", e.message);
     return;
   }
 };
 
 export const asyncLogin = async ({ id, password }) => {
   try {
-    let response = await axios.post(
-      "http://3.34.2.185:8000/api/auth/login",
-      {
-        id: id,
-        password: password,
-      },
-      { withCredentials: true, crossDomain: true }
-    );
+    let response = await axios.post("http://3.34.2.185:8000/api/auth/login", {
+      id: id,
+      password: password,
+    });
     const { token } = response.data;
+    console.log("response auth/login :", response);
     setCookie("user", token, 30);
     response = await asyncGetUser();
+    console.log("response asyncGetUser:", response);
     return response;
   } catch (e) {
+    console.log("asyncLogin", e.message);
     swal("아이디 혹은 비밀번호가 일치하지 않습니다.").then(() => {
       window.history.pushState({}, "", "/");
       window.location.reload();

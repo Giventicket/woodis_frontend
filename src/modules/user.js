@@ -36,16 +36,14 @@ const initialState = {
 const user = handleActions(
   {
     [RESET]: state => initialState,
-    [LOGIN_SUCCESS]: (state, { payload: user }) => ({
-      ...state,
-      user,
-      currentAcc: user.accList[0],
-    }),
-    [GETUSER_SUCCESS]: (state, { payload: user }) => ({
-      ...state,
-      user,
-      currentAcc: user.accList[0],
-    }),
+    [LOGIN_SUCCESS]: (state, { payload: user }) => {
+      console.log(LOGIN_SUCCESS, user);
+      return { ...state, user: user, currentAcc: user.accList[0] };
+    },
+    [GETUSER_SUCCESS]: (state, { payload: user }) => {
+      console.log(GETUSER_SUCCESS, user);
+      return { ...state, user: user, currentAcc: user.accList[0] };
+    },
     [SETUSER]: (state, { payload: user }) => ({ ...state, user }),
     [SETCURRENTACC]: (state, { payload: index }) => ({
       ...state,

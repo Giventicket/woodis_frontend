@@ -1,29 +1,33 @@
 import React from "react";
+import { isTablet, isMobile } from "react-device-detect";
 
 const dayStyle = {
-  textAlign: "left",
+  textAlign: "center",
   fontSize: "2rem",
-  backgroundColor: "white",
-  color:"grey",
-  paddingLeft:"1rem"  
+  color: "grey",
 };
 
 const dataStyle = {
-  textAlign: "left",
-  fontSize: "1rem",
-  backgroundColor: "white",
-  color:"grey",
-  padding: "1rem",
-  paddingLeft:"0.5rem"
+  textAlign: "center",
+  fontSize: "0.8rem",
+  color: "grey",
+  padding: "0.3rem",
 };
 
 const ConsumptionBoard = function () {
-  return (<>
-	<div style={dayStyle}>11일 일요일</div>
-	<div style={dataStyle}>-10000원 : CU 편의점</div>
-	<div style={dataStyle}>-10000원 : CU 편의점</div>
-	<div style={dataStyle}>-10000원 : CU 편의점</div>
-	<div style={dataStyle}>-10000원 : CU 편의점</div>
-  </>);
+  let show = false;
+  if (!isTablet && isMobile) {
+    show = true;
+  }
+  return (
+    <div>
+      {show && <hr />}
+      <div style={dayStyle}>11일 일요일</div>
+      <div style={dataStyle}>-10000원 : CU 편의점</div>
+      <div style={dataStyle}>-10000원 : CU 편의점</div>
+      <div style={dataStyle}>-10000원 : CU 편의점</div>
+      <div style={dataStyle}>-10000원 : CU 편의점</div>
+    </div>
+  );
 };
 export default React.memo(ConsumptionBoard);

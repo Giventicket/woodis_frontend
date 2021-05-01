@@ -1,57 +1,70 @@
 import React from "react";
 import ConsumptionBox from "./ConsumptionBox";
-import { Grid } from "@material-ui/core";
-import { isTablet, isMobile } from "react-device-detect";
+import { Grid, Box, Select, MenuItem } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
-const MonthLine = function ({month, margin = 2}) {
+const StyledSelect = withStyles({
+  root: {
+    backgroundColor: "white",
+    padding: "10.5px 14px",
+    width: "3rem",
+    color: "#715F61",
+    borderRadius: "15px",
+    verticalAlign: "buttom",
+  },
+  input: {
+    padding: 0,
+  },
+})(Select);
+
+const MonthLine = function ({ month, totalConsumption }) {
+  const monthArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
   return (
     <Grid container style={{ backgroundColor: "white" }}>
-      <Grid item xs={margin} style={{backgroundImage: "linear-gradient(to right, #DAF4FD, white)"}}/>
       <Grid item xs style={{ textAlign: "center" }}>
-          <b style={{fontSize:"2rem"}}>{`${month}월 소비달력`}</b>
-        </Grid>
-      <Grid item xs={margin} style={{backgroundImage: "linear-gradient(to left, #DAF4FD, white)"}}/>
+        <StyledSelect defaultValue={month} variant="outlined">
+          {monthArray.map(i => (
+            <MenuItem value={i} key={`MonthSelect ${i}`}>
+              {`${i} 월`}
+            </MenuItem>
+          ))}
+        </StyledSelect>
+        <b style={{ fontSize: "2rem" }}>{`월 총 소비 : ${totalConsumption}`}</b>
+      </Grid>
     </Grid>
   );
 };
 
-const IndexLine = function ({ month, names, margin=2 }) {
+const IndexLine = function ({ names }) {
   return (
     <Grid container style={{ backgroundColor: "white" }}>
-      <Grid item xs={margin} style={{backgroundImage: "linear-gradient(to right, #DAF4FD, white)"}}/>
       {names.map(name => (
         <Grid item xs style={{ textAlign: "center" }}>
-          <ConsumptionBox name={name} key={`IndexLine ${name}`}/>
+          <ConsumptionBox name={name} key={`IndexLine ${name}`} />
         </Grid>
       ))}
-      <Grid item xs={margin} style={{backgroundImage: "linear-gradient(to left, #DAF4FD, white)"}}/>
     </Grid>
   );
 };
 
-const DataLine = function ({ data, margin=2 }) {
+const DataLine = function ({ data }) {
   return (
     <Grid container style={{ backgroundColor: "white" }}>
-      <Grid item xs={margin} style={{backgroundImage: "linear-gradient(to right, #DAF4FD, white)"}}/>
       {data.map(prop => (
         <Grid item xs style={{ textAlign: "center" }}>
           <ConsumptionBox
             day={prop.day}
             consumption={prop.consumption}
-			key={`DataLine ${prop.day}`}
+            key={`DataLine ${prop.day}`}
           />
         </Grid>
       ))}
-      <Grid item xs={margin} style={{backgroundImage: "linear-gradient(to left, #DAF4FD, white)"}}/>
     </Grid>
   );
 };
 
 const ConsumptionPanel = function () {
-  let margin = 2; 
-  if (!isTablet && isMobile) {
-    margin = 0;
-  }
   const names = ["일", "월", "화", "수", "목", "금", "토"];
   const data1 = [
     { day: 1, consumption: 1000 },
@@ -91,14 +104,19 @@ const ConsumptionPanel = function () {
   ];
 
   return (
-    <>
-	  <MonthLine month="5" margin={margin}/>
-      <IndexLine names={names} margin={margin}/>
-      <DataLine data={data1} margin={margin}/>
-      <DataLine data={data2} margin={margin}/>
-      <DataLine data={data3} margin={margin}/>
-      <DataLine data={data4} margin={margin}/>
-    </>
+    <Grid container>
+      <Grid item xs={0} sm={0} md={0} lg={2}></Grid>
+      <Grid item xs={12} sm={12} md={12} lg={8}>
+        <MonthLine month="5" totalConsumption={1000000} />
+        <Box pt={2} />
+        <IndexLine names={names} />
+        <DataLine data={data1} />
+        <DataLine data={data2} />
+        <DataLine data={data3} />
+        <DataLine data={data4} />
+      </Grid>
+      <Grid item xs={0} sm={0} md={0} lg={2}></Grid>
+    </Grid>
   );
 };
 export default React.memo(ConsumptionPanel);

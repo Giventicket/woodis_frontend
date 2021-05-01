@@ -4,28 +4,39 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import GitHubIcon from "@material-ui/icons/GitHub";
 
 const style = {
-  background: "white",
-  marginTop: "100px",
-  paddingLeft: "100px",
+  textAlign: "center",
+  backgroundColor: "white",
   lineHeight: "30px",
   fontSize: "15px",
   color: "#707070",
+  lineHeight: "2rem",
 };
 
 const Footer = function () {
   return (
     <div style={style}>
-      팀명: 우디스 <br />
-      팀 멤버 <br />
+      <b>Team WOODIS</b>
+      <br />
       서준표: Frontend Developer
-      <a href="https://www.instagram.com/junpyoseo/" target="_blank">
-        <InstagramIcon />
+      <a
+        href="https://www.instagram.com/junpyoseo/"
+        target="_blank"
+        style={{
+          verticalAlign: "-webkit-baseline-middle",
+          marginLeft: "0.5rem",
+        }}
+      >
+        <InstagramIcon style={{ color: "#008CE0" }} />
       </a>
       <a
         href="https://www.facebook.com/profile.php?id=100007800972752"
         target="_blank"
+        style={{
+          verticalAlign: "-webkit-baseline-middle",
+          marginLeft: "0.5rem",
+        }}
       >
-        <FacebookIcon />
+        <FacebookIcon style={{ color: "#008CE0" }} />
       </a>
       <br />
       김대환: Backend Developer
@@ -33,8 +44,15 @@ const Footer = function () {
       김홍균: Product Manager
       <br />
       김우성: Frontend Developer
-      <a href="https://github.com/lotus9630" target="_blank">
-        <GitHubIcon />
+      <a
+        href="https://github.com/lotus9630"
+        target="_blank"
+        style={{
+          verticalAlign: "-webkit-baseline-middle",
+          marginLeft: "0.5rem",
+        }}
+      >
+        <GitHubIcon style={{ color: "#008CE0" }} />
       </a>
       <br />
     </div>

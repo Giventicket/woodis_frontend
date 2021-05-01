@@ -36,6 +36,7 @@ const LoginForm = function ({ onChangeId, onChangePassword, login }) {
   return (
     <>
       <form
+        method="POST"
         onSubmit={e => {
           e.preventDefault();
           login();
