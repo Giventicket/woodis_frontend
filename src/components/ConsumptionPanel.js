@@ -1,14 +1,35 @@
 import React from "react";
 import ConsumptionBox from "./ConsumptionBox";
-import { Grid, Box } from "@material-ui/core";
+import { Grid, Box, Select, MenuItem } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+
+const StyledSelect = withStyles({
+  root: {
+    backgroundColor: "white",
+    padding: "10.5px 14px",
+    width: "208px",
+    color: "#715F61",
+    borderRadius: "15px",
+  },
+  input: {
+    padding: 0,
+  },
+})(Select);
 
 const MonthLine = function ({ month, totalConsumption }) {
+  const monthArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
   return (
     <Grid container style={{ backgroundColor: "white" }}>
       <Grid item xs style={{ textAlign: "center" }}>
-        <b
-          style={{ fontSize: "2rem" }}
-        >{`${month}월 총 소비 : ${totalConsumption}`}</b>
+        <StyledSelect defaultValue={month} variant="outlined">
+          {monthArray.map(i => (
+            <MenuItem value={i} key={`MonthSelect ${i}`}>
+              {`${i} 월`}
+            </MenuItem>
+          ))}
+        </StyledSelect>
+        <b style={{ fontSize: "2rem" }}>{`월 총 소비 : ${totalConsumption}`}</b>
       </Grid>
     </Grid>
   );
