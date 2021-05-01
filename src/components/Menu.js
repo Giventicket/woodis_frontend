@@ -33,6 +33,15 @@ const Item = function ({ children, description, href, delay }) {
   );
 };
 
+const getMonthandDay = () => {
+  var today = new Date();
+
+  var month = today.getMonth() + 1;
+  var date = today.getDate();
+
+  return `?month=${month}&date=${date}`;
+};
+
 const Menu = function ({ name }) {
   const classes = useStyles();
   let iconSize = 200;
@@ -50,7 +59,11 @@ const Menu = function ({ name }) {
     <Grid container className={classes.grid}>
       <Grid item xs={0} sm />
       <Grid item xs sm>
-        <Item delay={0} description={calanderDescription} href="/calendar">
+        <Item
+          delay={0}
+          description={calanderDescription}
+          href={`/calendar${getMonthandDay()}`}
+        >
           <CalendarTodayIcon style={{ color: "#008CE0", fontSize: iconSize }} />
         </Item>
       </Grid>

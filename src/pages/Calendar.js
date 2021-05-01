@@ -62,7 +62,7 @@ function Calendar() {
           <ConsumptionBoard />
         </Grid>
       </Grid>
-      <Box pt={8} />
+      <Box pt={4} />
       <Footer></Footer>
       <Box pt={4} />
     </>

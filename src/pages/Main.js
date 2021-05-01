@@ -22,9 +22,9 @@ function Main() {
       ) : (
         <LoginFormContainer />
       )}
-      <Box pt={8} />
+      <Box pt={4} />
       <Menu name={user ? user.name : null} />
-      <Box pt={8} />
+      <Box pt={4} />
       <Footer></Footer>
       <Box pt={4} />
     </>
