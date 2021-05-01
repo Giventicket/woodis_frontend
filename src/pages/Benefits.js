@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { Box } from "@material-ui/core";
-import { Logo, Description, SingleMenu } from "../components";
+import { Logo, Description, SingleMenu, Cards } from "../components";
 import { UserDescriptionContainer } from "../containers";
 import { useSelector } from "react-redux";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
 import { isTablet, isMobile } from "react-device-detect";
 
 function Benefits() {
-  const user = useSelector(state => state.user.user);
+  // const user = useSelector(state => state.user.user);
+  const user = { name: "John" };
   let iconSize = 200;
   if (!isTablet && isMobile) {
     iconSize = 100;
@@ -33,6 +34,7 @@ function Benefits() {
       >
         <CreditCardIcon style={{ color: "#008CE0", fontSize: iconSize }} />
       </SingleMenu>
+      <Cards />
     </>
   );
 }
