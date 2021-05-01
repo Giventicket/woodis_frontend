@@ -10,10 +10,10 @@ const StyledSelect = withStyles({
     width: "3rem",
     color: "#715F61",
     borderRadius: "15px",
+    verticalAlign: "buttom",
   },
   input: {
     padding: 0,
-    verticalAlign: "super",
   },
 })(Select);
 
