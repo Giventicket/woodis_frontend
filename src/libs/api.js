@@ -60,6 +60,7 @@ export const asyncGetUser = async () => {
 
 export const asyncLogin = async ({ id, password }) => {
   try {
+	console.log("hello");
     let response = await axios.post(
       "/api/auth/login",
       {
