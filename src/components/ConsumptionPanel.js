@@ -77,16 +77,23 @@ function getDataList(year, month) {
   let lastDate = lastDay.getDate();
   let data = [];
   firstDate = (firstDate+1)%7;
-  while (--firstDate) data.push(null);
+  console.log(firstDate);
+  if(firstDate!=0)
+	while (--firstDate) data.push(null);
+
   for (let i = 1; i <= lastDate; i++) data.push(i);
   while (data.length % 7) data.push(null);
   let dataList = [];
+  let ele = [];
   while (data.length !== 0) {
-    let ele = [];
+    ele = [];
     for (let i = 0; i < 7; i++) ele.push(data.shift());
     dataList.push(ele);
   }
+
+
   return dataList;
+
 }
 
 const ConsumptionPanel = function ({ location }) {
