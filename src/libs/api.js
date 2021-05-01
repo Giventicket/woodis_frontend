@@ -48,8 +48,7 @@ export const asyncGetUser = async () => {
         headers: {
           token: token,
         },
-      },
-	  { withCredentials: true, crossDomain: true }
+      }
     );
     localStorage.setItem("user", JSON.stringify(response.data));
     return response.data;
@@ -65,8 +64,7 @@ export const asyncLogin = async ({ id, password }) => {
       {
         id: id,
         password: password,
-      },
-      { withCredentials: true, crossDomain: true }
+      }
     );
     const { token } = response.data;
     setCookie("user", token, 30);
