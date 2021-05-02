@@ -76,6 +76,7 @@ function Benefit({
           <CreditCard
             imgURL={cardList[cardNum].imgURL}
             parsedTranList={parsedAnotherTranList}
+            another={true}
             year={2021}
             month={2}
           />

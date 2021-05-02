@@ -156,7 +156,7 @@ export const asyncAuth = async ({ name, agency, phone, identity }) => {
   }
 };
 
-export const asyncGetDiscount = async ({ year, month, code, acc }) => {
+export const asyncGetDiscount = async ({ year, month, acc, code }) => {
   let token = getCookie("user");
   if (month.length === 1) month = "0" + month;
 
@@ -166,7 +166,7 @@ export const asyncGetDiscount = async ({ year, month, code, acc }) => {
       {
         year: Number(year),
         month: month,
-        code: code,
+        code: Number(code) + 1,
         acc: acc,
       },
       {
@@ -177,7 +177,7 @@ export const asyncGetDiscount = async ({ year, month, code, acc }) => {
     );
     console.log("asyncAuth", response.data);
 
-    return response.data.dataBody.GRID;
+    return response.data.tranList;
   } catch (e) {
     return;
   }
