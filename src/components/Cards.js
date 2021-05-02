@@ -101,8 +101,9 @@ const Cards = function () {
               lg
               xl
               style={{ textAlign: "center" }}
+              key={index}
             >
-              <img src={card.imgURL} alt=""/>
+              <img src={card.imgURL} alt="" />
             </Grid>
             {padding ? (
               <Grid item xs={12}>
@@ -123,42 +124,42 @@ const Cards = function () {
                 <b>{card.name}</b>
               </Grid>
               <Grid item container xs>
-					<Grid item xs={1}/>
+                <Grid item xs={1} />
                 {card.benefits.map((benefit, index) => (
-				<>
-                  <Grid
-                    container
-                    direction="column"
-                    item
-                    xs
-                    key={index}
-                    style={{
-						outline:"auto",
-					  borderColor:"blue",
-					  paddingLeft:"0.25rem",
-					  paddingRight:"0.25rem",
-					  borderWidth:"2px"
-                    }}
-                  >
+                  <>
                     <Grid
+                      container
+                      direction="column"
                       item
                       xs
+                      key={index}
                       style={{
-                        fontSize: "0.8rem",
-                        textAlign: "center",
+                        outline: "auto",
+                        borderColor: "blue",
+                        paddingLeft: "0.25rem",
+                        paddingRight: "0.25rem",
+                        borderWidth: "2px",
                       }}
                     >
-                      <b>{`${benefit.title}`}</b>
+                      <Grid
+                        item
+                        xs
+                        style={{
+                          fontSize: "0.8rem",
+                          textAlign: "center",
+                        }}
+                      >
+                        <b>{`${benefit.title}`}</b>
+                      </Grid>
+                      <Grid
+                        item
+                        xs
+                        style={{ fontSize: "0.6rem", textAlign: "center" }}
+                      >{`[${benefit.detail}]`}</Grid>
                     </Grid>
-                    <Grid
-                      item
-                      xs
-                      style={{ fontSize: "0.6rem", textAlign: "center",}}
-                    >{`[${benefit.detail}]`}</Grid>
-                  </Grid>
-				</>
+                  </>
                 ))}
-				<Grid item xs={1}/>
+                <Grid item xs={1} />
               </Grid>
               <Grid item xs></Grid>
             </Grid>

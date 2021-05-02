@@ -28,10 +28,13 @@ const initialState = {
 
 const tranList = handleActions(
   {
-    [GET_TRANLIST_SUCCESS]: (state, { payload: tranList }) => ({
-      ...state,
-      tranList,
-    }),
+    [GET_TRANLIST_SUCCESS]: (state, { payload: tranList }) => {
+      console.log(GET_TRANLIST_SUCCESS, tranList);
+      return {
+        ...state,
+        tranList,
+      };
+    },
     [RESET]: state => initialState,
   },
   initialState

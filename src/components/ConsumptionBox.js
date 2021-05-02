@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
     position: "absolute",
     top: "1rem",
     left: 0,
-    fontSize: "0.4rem",
+    fontSize: "0.5rem",
     width: "100%",
     zIndex: 1,
   },
@@ -64,7 +64,7 @@ const ConsumptionBox = function ({
   location,
 }) {
   const query = queryString.parse(location.search);
-  let size = "4rem";
+  let size = "4.5rem";
   const activated = date === Number(query.date);
   const classes = useStyles({ size, activated });
   if (name)
@@ -74,15 +74,20 @@ const ConsumptionBox = function ({
       </div>
     );
   if (!date) return null;
-  if(parsedTranList[date])
-	  return (
-		<Link
-		  to={`/calendar?month=${query.month}&date=${date}`}
-		  className={classes.linkStyle}
-		>
-		  <b className={classes.date}>{date}일</b>
-		  <span className={classes.consumption}>{parsedTranList[date].reduce((prev,next)=>(prev+next.pay),0).toLocaleString()}원</span>
-		</Link>
-	  );
+  if (!parsedTranList[date]) return null;
+  return (
+    <Link
+      to={`/calendar?year=${query.year}&month=${query.month}&date=${date}`}
+      className={classes.linkStyle}
+    >
+      <b className={classes.date}>{date}일</b>
+      <span className={classes.consumption}>
+        {parsedTranList[date]
+          .reduce((prev, next) => prev + next.pay, 0)
+          .toLocaleString()}
+        원
+      </span>
+    </Link>
+  );
 };
 export default React.memo(withRouter(ConsumptionBox));

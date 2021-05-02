@@ -1,5 +1,12 @@
 export default function getParsedTransList(tranList, year, month) {
-  if (!tranList || !tranList[month - 1]) return null;
+  if (!tranList || !tranList[month - 1]) {
+    let lastDay = new Date(year, month, 0).getDate();
+    let parsedList = [];
+    for (let i = 0; i < lastDay; i++) {
+      parsedList.push([]);
+    }
+    return parsedList;
+  }
   let list = tranList[month - 1].tranList.slice();
   let lastDay = new Date(year, month, 0).getDate();
   lastDay += 1;

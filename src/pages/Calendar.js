@@ -14,28 +14,36 @@ import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import { isTablet, isMobile } from "react-device-detect";
 import queryString from "query-string";
 import { withRouter } from "react-router-dom";
-import { get_tranList } from "../modules/tranList";
+import { get_tranList, reset } from "../modules/tranList";
 import getParsedTranList from "../libs/getParsedTranList";
 
 function Calendar({ location }) {
   const dispatch = useDispatch();
+  const [queryCache, setQueryCache] = useState({
+    year: null,
+    month: null,
+    date: null,
+  });
   const user = useSelector(state => state.user.user);
   const currentAcc = useSelector(state => state.user.currentAcc);
   const query = queryString.parse(location.search);
   const tranList = useSelector(state => state.tranList.tranList);
-  const parsedTranList = getParsedTranList(tranList, 2021, Number(query.month));
+  const parsedTranList = getParsedTranList(
+    tranList,
+    Number(query.year),
+    Number(query.month)
+  );
   let iconSize = 200;
   if (!isTablet && isMobile) {
     iconSize = 100;
   }
 
   useEffect(() => {
-    console.log("currentAcc");
-    if (currentAcc) {
-      dispatch(get_tranList(2021, currentAcc));
-      return;
+    if (currentAcc && JSON.stringify(queryCache) !== JSON.stringify(query)) {
+      dispatch(get_tranList(query.year, currentAcc));
+      setQueryCache(query);
     }
-  }, [dispatch, currentAcc]);
+  }, [dispatch, query, currentAcc, queryCache]);
 
   if (!user) return <>로그인 후에 사용하세요!</>;
   return (
@@ -60,9 +68,9 @@ function Calendar({ location }) {
         <Grid
           item
           xs={12}
-          sm={9}
-          md={9}
-          lg={9}
+          sm={10}
+          md={10}
+          lg={10}
           style={{ background: "linear-gradient(white, #DAF4FD)" }}
         >
           <ConsumptionPanel parsedTranList={parsedTranList} />
@@ -70,9 +78,9 @@ function Calendar({ location }) {
         <Grid
           item
           xs={12}
-          sm={3}
-          md={3}
-          lg={3}
+          sm={2}
+          md={2}
+          lg={2}
           style={{ background: "linear-gradient(white, #DAF4FD)" }}
         >
           <ConsumptionBoard parsedTranList={parsedTranList} />

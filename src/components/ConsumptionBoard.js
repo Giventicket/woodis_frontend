@@ -9,12 +9,7 @@ const dayStyle = {
   color: "grey",
 };
 
-const dataStyle = {
-  textAlign: "center",
-  fontSize: "0.8rem",
-  color: "grey",
-  padding: "0.3rem",
-};
+
 
 const ConsumptionBoard = function ({ location, parsedTranList }) {
   const query = queryString.parse(location.search);
@@ -24,6 +19,14 @@ const ConsumptionBoard = function ({ location, parsedTranList }) {
   if (!isTablet && isMobile) {
     show = true;
   }
+  
+  const dataStyle = {
+  textAlign: show ? "center":"justify",
+  fontSize: "0.8rem",
+  color: "grey",
+  padding: "0.3rem",
+};
+  
   if(!parsedTranList)
 	  return null;
   return (

@@ -35,11 +35,12 @@ const Item = function ({ children, description, href, delay }) {
 
 const getMonthandDay = () => {
   var today = new Date();
-
+  
+  var year = today.getFullYear();
   var month = today.getMonth() + 1;
   var date = today.getDate();
 
-  return `?month=${month}&date=${date}`;
+  return `?year=${year}&month=${month}&date=${date}`;
 };
 
 const Menu = function ({ name }) {
