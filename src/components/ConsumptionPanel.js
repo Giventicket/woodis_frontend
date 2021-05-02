@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import queryString from "query-string";
 import { withRouter, Link } from "react-router-dom";
 import getDataList from "../libs/getDataList";
+import getMonthSum from "../libs/getMonthSum";
 
 const StyledSelect = withStyles({
   root: {
@@ -107,15 +108,7 @@ const ConsumptionPanel = function ({ location, parsedTranList }) {
           year={query.year}
           month={query.month}
           date={query.date}
-          totalConsumption={parsedTranList.reduce((prev1, next1) => {
-            if (next1) {
-              let sum = next1.reduce((prev2, next2) => {
-                return prev2 + next2.pay;
-              }, 0);
-              return prev1 + sum;
-            }
-            return prev1;
-          }, 0)}
+          totalConsumption={getMonthSum(parsedTranList)}
         />
         <Box pt={2} />
         <IndexLine names={names} />

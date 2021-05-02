@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { isTablet, isMobile } from "react-device-detect";
 import queryString from "query-string";
 import { withRouter, Link } from "react-router-dom";
+import getDateSum from "../libs/getDateSum";
 
 const useStyles = makeStyles(theme => ({
   linkStyle: {
@@ -82,10 +83,7 @@ const ConsumptionBox = function ({
     >
       <b className={classes.date}>{date}일</b>
       <span className={classes.consumption}>
-        {parsedTranList[date]
-          .reduce((prev, next) => prev + next.pay, 0)
-          .toLocaleString()}
-        원
+        {getDateSum(parsedTranList, date).toLocaleString()}원
       </span>
     </Link>
   );

@@ -14,7 +14,7 @@ import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import { isTablet, isMobile } from "react-device-detect";
 import queryString from "query-string";
 import { withRouter, Redirect } from "react-router-dom";
-import { get_tranList, reset } from "../modules/tranList";
+import { get_tranList } from "../modules/tranList";
 import getParsedTranList from "../libs/getParsedTranList";
 
 function Calendar({ location }) {
@@ -36,7 +36,7 @@ function Calendar({ location }) {
 
   useEffect(() => {
     if (currentAcc && JSON.stringify(queryCache) !== JSON.stringify(query)) {
-      dispatch(get_tranList(query.year, currentAcc));
+      dispatch(get_tranList(query.year, query.month, currentAcc));
       setQueryCache(query);
     }
   }, [dispatch, query, currentAcc, queryCache]);

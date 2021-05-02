@@ -1,14 +1,13 @@
 export default function getParsedTransList(tranList, year, month) {
-  if (!tranList || !tranList[month - 1]) {
-    let lastDay = new Date(year, month, 0).getDate();
+  let lastDay = new Date(year, month, 0).getDate();
+  if (!tranList) {
     let parsedList = [];
     for (let i = 0; i < lastDay; i++) {
       parsedList.push([]);
     }
     return parsedList;
   }
-  let list = tranList[month - 1].tranList.slice();
-  let lastDay = new Date(year, month, 0).getDate();
+  let list = tranList.slice();
   lastDay += 1;
   let parsedList = [];
   for (let i = 0; i < lastDay; i++) {
@@ -18,8 +17,12 @@ export default function getParsedTransList(tranList, year, month) {
   while (list.length !== 0) {
     let next = list.shift();
     if (next) {
-      let date = new Date(next.tranDate).getDate();
-      parsedList[date].push(next);
+      let date = new Date(next.TRN_DT).getDate();
+	  if(!parsedList[date]){
+		  console.log("baasdkfaksdfjasdk!!!!!!!!!!", date, new Date(year, month, 0).getDate());
+	  } else{
+			parsedList[date].push(next);
+	  }
     }
   }
   return parsedList;

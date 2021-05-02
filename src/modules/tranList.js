@@ -7,8 +7,9 @@ const GET_TRANLIST = "tranList/GET_TRANLIST";
 const GET_TRANLIST_SUCCESS = "tranList/GET_TRANLIST_SUCCESS";
 const RESET = "tranList/RESET";
 
-export const get_tranList = createAction(GET_TRANLIST, (year, acc) => ({
+export const get_tranList = createAction(GET_TRANLIST, (year, month, acc) => ({
   year,
+  month,
   acc,
 }));
 export const reset = createAction(RESET);

@@ -5,15 +5,19 @@ import { makeStyles } from "@material-ui/core/styles";
 import useFadeIn from "../libs/useFadeIn";
 
 const useStyles = makeStyles(theme => ({
-  form: { textAlign: "center" },
+  form: {
+    width: "261px",
+    margin: "0 auto",
+    textAlign: "left",
+  },
   input: {
     backgroundColor: "white",
-    width: "243px",
+    minWidth: "unset",
     color: "#715F61",
-    borderRadius: "10px",
+    borderRadius: "5px",
     paddingTop: "5px",
-    paddingLeft: "5px",
-    paddingRight: "5px",
+    fontSize: "0.5rem",
+    width: "100%",
   },
   signupButton: {
     backgroundColor: "#008CF0",
@@ -35,9 +39,9 @@ const StyledSelect = withStyles({
   root: {
     backgroundColor: "white",
     padding: "10.5px 14px",
-    width: "208px",
+    width: "215px",
     color: "#715F61",
-    borderRadius: "15px",
+    borderRadius: "5px",
   },
   input: {
     padding: 0,
@@ -48,11 +52,14 @@ const SignupForm = function ({
   onChangeName,
   onChangeAgency,
   onChangePhone,
+  onChangeIdentity,
   onChangeEmail,
   onChangeId,
   onChangePassword,
   onChangePasswordConfirm,
   signup,
+  authKey,
+  onClickAuth
 }) {
   const classes = useStyles();
   const fadeIn = useFadeIn(0.5);
@@ -67,7 +74,7 @@ const SignupForm = function ({
         signup();
       }}
     >
-      <Box pb={1} pr={28}>
+      <Box pb={1}>
         <b style={{ fontSize: "0.8rem" }}>이름</b>
       </Box>
       <TextField
@@ -78,7 +85,18 @@ const SignupForm = function ({
         onChange={e => onChangeName(e.target.value)}
       />
       <Box mt={2} />
-      <Box pb={1} pr={26}>
+      <Box pb={1}>
+        <b style={{ fontSize: "0.8rem" }}>주민등록번호</b>
+      </Box>
+      <TextField
+        className={classes.input}
+        size="small"
+        variant="standard"
+        placeholder="주민등록번호 13자리 입력"
+        onChange={e => onChangeIdentity(e.target.value)}
+      />
+      <Box mt={2} />
+      <Box pb={1}>
         <b style={{ fontSize: "0.8rem" }}>통신사</b>
       </Box>
       <StyledSelect
@@ -106,18 +124,36 @@ const SignupForm = function ({
         </MenuItem>
       </StyledSelect>
       <Box mt={2} />
-      <Box pb={1} pr={24}>
+      <Box pb={1}>
         <b style={{ fontSize: "0.8rem" }}>전화번호</b>
       </Box>
       <TextField
         className={classes.input}
         size="small"
         variant="standard"
-        placeholder="전화번호 입력"
+        placeholder="예)010-XXXX-XXXX"
         onChange={e => onChangePhone(e.target.value)}
       />
       <Box mt={2} />
-      <Box pb={1} pr={26}>
+	  <Button
+	      size="small"
+          variant="contained"
+          className={classes.signupButton}
+		  fullWidth={true}
+		  onClick={onClickAuth}
+        >
+          인증번호 발급
+        </Button>		
+      <Box mt={2} />
+	  <TextField
+        className={classes.input}
+        size="small"
+        variant="standard"
+        placeholder="우리은행 SMS인증번호를 발급해주세요." 
+		value={authKey}
+		disabled={true}
+      />
+      <Box pt={2} pb={1}>
         <b style={{ fontSize: "0.8rem" }}>이메일</b>
       </Box>
       <TextField
@@ -128,7 +164,7 @@ const SignupForm = function ({
         onChange={e => onChangeEmail(e.target.value)}
       />
       <Box mt={2} />
-      <Box pb={1} pr={26}>
+      <Box pb={1}>
         <b style={{ fontSize: "0.8rem" }}>아이디</b>
       </Box>
       <TextField
@@ -139,7 +175,7 @@ const SignupForm = function ({
         onChange={e => onChangeId(e.target.value)}
       />
       <Box mt={2} />
-      <Box pb={1} pr={24}>
+      <Box pb={1}>
         <b style={{ fontSize: "0.8rem" }}>비밀번호</b>
       </Box>
       <TextField
@@ -151,7 +187,7 @@ const SignupForm = function ({
         onChange={e => onChangePassword(e.target.value)}
       />
       <Box mt={2} />
-      <Box pb={1} pr={19}>
+      <Box pb={1}>
         <b style={{ fontSize: "0.8rem" }}>비밀번호 확인</b>
       </Box>
       <TextField
@@ -163,7 +199,7 @@ const SignupForm = function ({
         onChange={e => onChangePasswordConfirm(e.target.value)}
       />
       <Box mt={4} />
-      <Box pl="15px">
+      <Box style={{ textAlign: "right" }}>
         <Button
           variant="contained"
           className={classes.signupButton}
