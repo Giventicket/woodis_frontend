@@ -45,23 +45,33 @@ const StyledSelect = withStyles({
 })(Select);
 
 const SearchIDForm = function ({
-  onChangeName,
-  onChangeAgency,
+  onSearchID,
   onChangePhone,
+  onChangeAgency,
   onChangeEmail,
-  signup,
+  onChangeName,
 }) {
   const classes = useStyles();
   const fadeIn = useFadeIn(0.5);
+  let name, phone, email, ID;
 
   return (
     <form
       method="POST"
       className={classes.form}
       {...fadeIn}
-      onSubmit={e => {
+      onSubmit={async e => {
         e.preventDefault();
-        signup();
+        [name, phone, email] = e.target.querySelectorAll("input");
+        ID = await onSearchID(name.value, phone.value, email.value);
+        if (ID) {
+          alert(ID);
+        } else {
+          alert("해당 요청에 맞는 아이디가 존재하지 않습니다.");
+        }
+        name.value = "";
+        phone.value = "";
+        email.value = "";
       }}
     >
       <Box pb={1} pr={28}>
@@ -102,6 +112,7 @@ const SearchIDForm = function ({
           LGU+(알뜰폰)
         </MenuItem>
       </StyledSelect>
+      <Box mt={2} />
       <Box mt={2} />
       <Box pb={1} pr={24}>
         <b style={{ fontSize: "0.8rem" }}>전화번호</b>
