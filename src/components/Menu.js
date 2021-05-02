@@ -21,10 +21,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Item = function ({ children, description, href, delay }) {
+const Item = function ({ children, description, href, delay, onClick }) {
   const fadeIn = useFadeIn(2, delay);
   return (
-    <CardActionArea {...fadeIn} href={href}>
+    <CardActionArea {...fadeIn} href={href} onClick={onClick}>
       <CardMedia>{children}</CardMedia>
       <CardContent>
         <b style={{ fontSize: "0.75rem" }}>{description}</b>
@@ -35,7 +35,7 @@ const Item = function ({ children, description, href, delay }) {
 
 const getMonthandDay = () => {
   var today = new Date();
-  
+
   var year = today.getFullYear();
   var month = today.getMonth() + 1;
   var date = today.getDate();
@@ -43,7 +43,7 @@ const getMonthandDay = () => {
   return `?year=${year}&month=${month}&date=${date}`;
 };
 
-const Menu = function ({ name }) {
+const Menu = function ({ name, onClick }) {
   const classes = useStyles();
   let iconSize = 200;
   if (!isTablet && isMobile) {
@@ -61,6 +61,7 @@ const Menu = function ({ name }) {
       <Grid item xs={false} sm />
       <Grid item xs sm>
         <Item
+          onClick={onClick}
           delay={0}
           description={calanderDescription}
           href={`/calendar${getMonthandDay()}`}
@@ -69,12 +70,17 @@ const Menu = function ({ name }) {
         </Item>
       </Grid>
       <Grid item xs sm>
-        <Item delay={0.5} description={creditCardDescription} href="/benefits">
+        <Item
+          onClick={onClick}
+          delay={0.5}
+          description={creditCardDescription}
+          href="/benefits"
+        >
           <CreditCardIcon style={{ color: "#008CE0", fontSize: iconSize }} />
         </Item>
       </Grid>
       <Grid item xs sm>
-        <Item delay={1} description={subscriptDescription}>
+        <Item onClick={onClick} delay={1} description={subscriptDescription}>
           <SubscriptionsIcon style={{ color: "#008CE0", fontSize: iconSize }} />
         </Item>
       </Grid>

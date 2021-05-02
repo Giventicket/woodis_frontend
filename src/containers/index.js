@@ -3,6 +3,7 @@ import SignupFormContainer from "./SignupFormContainer";
 import UserDescriptionContainer from "./UserDescriptionContainer";
 import SearchIDFormContainer from "./SearchIDFormContainer";
 import ReregisterFormContainer from "./ReregisterFormContainer";
+import MenuContainer from "./MenuContainer";
 
 export {
   LoginFormContainer,
@@ -10,4 +11,5 @@ export {
   UserDescriptionContainer,
   SearchIDFormContainer,
   ReregisterFormContainer,
+  MenuContainer,
 };

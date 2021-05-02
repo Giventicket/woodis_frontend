@@ -12,7 +12,7 @@ function Benefits() {
   if (!isTablet && isMobile) {
     iconSize = 100;
   }
-  if (!user) return <>로그인 후에 사용하세요!</>;
+  if (!user) return null;
   return (
     <>
       <Box pt={2} />
