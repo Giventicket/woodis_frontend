@@ -13,7 +13,7 @@ import { withRouter } from "react-router-dom";
 import cardList from "../libs/cardList";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
 import { isTablet, isMobile } from "react-device-detect";
-import { get_tranList } from "../modules/tranList";
+import { get_tranList, get_another_tranList } from "../modules/tranList";
 import getParsedTranList from "../libs/getParsedTranList";
 import myCard from "../images/myCard.png";
 
@@ -30,14 +30,16 @@ function Benefit({
   const user = useSelector(state => state.user.user);
   const currentAcc = useSelector(state => state.user.currentAcc);
   const tranList = useSelector(state => state.tranList.tranList);
+  const anotherTranList = useSelector(state => state.tranList.anotherTranList);
   console.log(tranList);
   const parsedTranList = getParsedTranList(tranList, 2021, 2);
+  const parsedAnotherTranList = getParsedTranList(anotherTranList, 2021, 2);
   useEffect(() => {
     if (currentAcc) {
-      let today = new Date();
       dispatch(get_tranList("2021", "2", currentAcc));
+      dispatch(get_another_tranList("2021", "2", currentAcc, cardNum));
     }
-  }, [dispatch, currentAcc]);
+  }, [dispatch, currentAcc, cardNum]);
 
   if (!user || !cardList[cardNum]) return null;
   return (
@@ -73,7 +75,7 @@ function Benefit({
         >
           <CreditCard
             imgURL={cardList[cardNum].imgURL}
-            parsedTranList={parsedTranList}
+            parsedTranList={parsedAnotherTranList}
             year={2021}
             month={2}
           />

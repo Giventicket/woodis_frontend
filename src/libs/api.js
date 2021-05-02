@@ -156,24 +156,30 @@ export const asyncAuth = async ({ name, agency, phone, identity }) => {
   }
 };
 
-export const asyncGetDiscount = async ({ name, agency, phone, identity }) => {
+export const asyncGetDiscount = async ({ year, month, code, acc }) => {
+  let token = getCookie("user");
+  if (month.length === 1) month = "0" + month;
+
   try {
     const response = await axios.post(
       "http://3.34.2.185:8000/api/user/getDiscount",
       {
         dataBody: {
-          COMC_DIS: agency,
-          HP_NO: phone.slice(0, 3) + phone.slice(4, 8) + phone.slice(9, 13),
-          HP_CRTF_AGR_YN: "Y",
-          FNM: name,
-          RRNO_BFNB: identity.slice(0, 6),
-          ENCY_RRNO_LSNM: identity.slice(6, 13),
+          year: Number(year),
+          month: month,
+          code: code,
+          acc: acc,
+        },
+      },
+      {
+        headers: {
+          token,
         },
       }
     );
     console.log("asyncAuth", response.data);
 
-    return response.data;
+    return response.data.dataBody.GRID;
   } catch (e) {
     return;
   }

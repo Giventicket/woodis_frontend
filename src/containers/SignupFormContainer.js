@@ -19,7 +19,6 @@ import {
   auth,
   reset,
 } from "../modules/signup";
-import axios from "axios";
 
 const SignupFormContainer = () => {
   const dispatch = useDispatch();

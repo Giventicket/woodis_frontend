@@ -44,13 +44,7 @@ const StyledSelect = withStyles({
   },
 })(Select);
 
-const SearchIDForm = function ({
-  onSearchID,
-  onChangePhone,
-  onChangeAgency,
-  onChangeEmail,
-  onChangeName,
-}) {
+const SearchIDForm = function ({ onSearchID }) {
   const classes = useStyles();
   const fadeIn = useFadeIn(0.5);
   let name, phone, email, ID;
@@ -82,17 +76,12 @@ const SearchIDForm = function ({
         size="small"
         variant="standard"
         placeholder="이름 입력"
-        onChange={e => onChangeName(e.target.value)}
       />
       <Box mt={2} />
       <Box pb={1} pr={26}>
         <b style={{ fontSize: "0.8rem" }}>통신사</b>
       </Box>
-      <StyledSelect
-        defaultValue={1}
-        variant="outlined"
-        onChange={e => onChangeAgency(e.target.value.toString())}
-      >
+      <StyledSelect defaultValue={1} variant="outlined">
         <MenuItem value={1} key="SKT">
           SKT
         </MenuItem>
@@ -122,7 +111,6 @@ const SearchIDForm = function ({
         size="small"
         variant="standard"
         placeholder="전화번호 입력"
-        onChange={e => onChangePhone(e.target.value)}
       />
       <Box mt={2} />
       <Box pb={1} pr={26}>
@@ -133,7 +121,6 @@ const SearchIDForm = function ({
         size="small"
         variant="standard"
         placeholder="이메일 입력"
-        onChange={e => onChangeEmail(e.target.value)}
       />
       <Box mt={4} />
       <Box pl="15px">

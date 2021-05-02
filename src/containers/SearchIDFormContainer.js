@@ -2,7 +2,7 @@ import React from "react";
 import { SearchIDForm } from "../components";
 import axios from "axios";
 
-const SearchIDFormContainer = () => {
+const SearchIDFormContainer = ({ onSearchID }) => {
   async function onSearchID(name, phone, email) {
     let res;
     try {
