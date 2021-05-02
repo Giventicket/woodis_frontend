@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
-import { Box, Grid } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { Box, Grid, MenuItem, Select } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import {
   Logo,
   Description,
@@ -17,11 +18,25 @@ import { get_tranList, get_another_tranList } from "../modules/tranList";
 import getParsedTranList from "../libs/getParsedTranList";
 import myCard from "../images/myCard.png";
 
+const StyledSelect = withStyles({
+  root: {
+    backgroundColor: "white",
+    padding: "0 14px",
+    width: "6rem",
+    color: "black",
+    fontWeight: "700",
+    borderRadius: "15px",
+    paddingTop: "15px",
+    fontSize: "1.2rem",
+  },
+})(Select);
+
 function Benefit({
   match: {
     params: { cardNum },
   },
 }) {
+  const [info, setInfo] = useState({ year: "2021", month: "5" });
   const dispatch = useDispatch();
   let iconSize = 200;
   if (!isTablet && isMobile) {
@@ -36,10 +51,12 @@ function Benefit({
   const parsedAnotherTranList = getParsedTranList(anotherTranList, 2021, 2);
   useEffect(() => {
     if (currentAcc) {
-      dispatch(get_tranList("2021", "2", currentAcc));
-      dispatch(get_another_tranList("2021", "2", currentAcc, cardNum));
+      dispatch(get_tranList(info.year, info.month, currentAcc));
+      dispatch(
+        get_another_tranList(info.year, info.month, currentAcc, cardNum)
+      );
     }
-  }, [dispatch, currentAcc, cardNum]);
+  }, [dispatch, currentAcc, cardNum, info]);
 
   if (!user || !cardList[cardNum]) return null;
   return (
@@ -61,6 +78,36 @@ function Benefit({
         <CreditCardIcon style={{ color: "#008CE0", fontSize: iconSize }} />
       </SingleMenu>
       <Box pt={4} />
+      <Box style={{ textAlign: "center" }}>
+        <StyledSelect
+          variant="standard"
+          onChange={e => {
+            setInfo({ ...info, year: e.target.value });
+          }}
+          value={info.year}
+        >
+          {["2017", "2018", "2019", "2020", "2021"].map((i, index) => (
+            <MenuItem value={i} key={index} style={{ padding: 0 }}>
+              {`${i} 년`}
+            </MenuItem>
+          ))}
+        </StyledSelect>
+        <StyledSelect
+          variant="standard"
+          onChange={e => {
+            setInfo({ ...info, month: e.target.value });
+          }}
+          value={info.month}
+        >
+          {["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"].map(
+            (i, index) => (
+              <MenuItem value={i} key={index} style={{ padding: 0 }}>
+                {`${i} 월`}
+              </MenuItem>
+            )
+          )}
+        </StyledSelect>
+      </Box>
       <Grid container>
         <Grid xs={12} md={12} lg={12}>
           <Box pt={4} />
@@ -77,16 +124,16 @@ function Benefit({
             imgURL={cardList[cardNum].imgURL}
             parsedTranList={parsedAnotherTranList}
             another={true}
-            year={2021}
-            month={2}
+            year={info.year}
+            month={info.month}
           />
         </Grid>
         <Grid item xs md lg>
           <CreditCard
             imgURL={myCard}
             parsedTranList={parsedTranList}
-            year={2021}
-            month={2}
+            year={info.year}
+            month={info.month}
           />
         </Grid>
         <Grid item xs={false} md={false} lg={1} />

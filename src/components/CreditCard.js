@@ -1,8 +1,8 @@
 import React from "react";
-import { Box } from "@material-ui/core";
-import getParsedTranList from "../libs/getParsedTranList";
+import { Box, Select } from "@material-ui/core";
 import getMonthSum from "../libs/getMonthSum";
 import getAnotherMonthSum from "../libs/getAnotherMonthSum";
+import { withStyles } from "@material-ui/core/styles";
 
 const style = {
   textAlign: "center",
@@ -38,7 +38,7 @@ const DayConsumptionBox = function ({ parsedTranList, year, month }) {
               }요일`}
             </div>
             {array.map((tran, idx) =>
-              tran ? (
+              tran.TRN_DT !== 0 ? (
                 <div key={idx} style={{ color: "black", lineHeight: "2rem" }}>
                   <b>{`${tran.TRN_DT} ${tran.TRN_TM.substr(
                     0,
