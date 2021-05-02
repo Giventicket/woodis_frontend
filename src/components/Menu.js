@@ -44,7 +44,7 @@ const getMonthandDay = () => {
   return `?year=${year}&month=${month}&date=${date}`;
 };
 
-const Menu = function ({ name, onClick, email }) {
+const Menu = function ({ name, onClick1, onClick2, email }) {
   const classes = useStyles();
   let iconSize = 200;
   if (!isTablet && isMobile) {
@@ -62,7 +62,7 @@ const Menu = function ({ name, onClick, email }) {
       <Grid item xs={false} sm />
       <Grid item xs sm>
         <Item
-          onClick={onClick}
+          onClick={onClick1}
           delay={0}
           description={calanderDescription}
           href={`/calendar${getMonthandDay()}`}
@@ -72,7 +72,7 @@ const Menu = function ({ name, onClick, email }) {
       </Grid>
       <Grid item xs sm>
         <Item
-          onClick={onClick}
+          onClick={onClick1}
           delay={0.5}
           description={creditCardDescription}
           href="/benefits"
@@ -81,16 +81,7 @@ const Menu = function ({ name, onClick, email }) {
         </Item>
       </Grid>
       <Grid item xs sm>
-        <Item
-          onClick={() => {
-            onClick();
-            swal(
-              `${email} 로 WOODIS의 메일이 발송되었습니다. WOODIS와 함께 우아한 금융서비스를 이용하길 바랍니다.`
-            );
-          }}
-          delay={1}
-          description={subscriptDescription}
-        >
+        <Item onClick={onClick2} delay={1} description={subscriptDescription}>
           <SubscriptionsIcon style={{ color: "#008CE0", fontSize: iconSize }} />
         </Item>
       </Grid>

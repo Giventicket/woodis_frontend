@@ -58,23 +58,22 @@ const card3 = {
 };
 
 const card4 = {
-  name: "갤러리아 체크카드",
+  name: "카카오페이 체크카드",
   benefits: [
     {
-      title: "갤러리아백화점 할인체크",
-      detail: "갤러리아백화점 5% 현장 할인",
+      title: "카카오페이 가맹점",
+      detail: "카카오페이 가맹점 이용금액 5% 캐쉬백",
     },
     {
-      title: "생활 밀착형 적립",
-      detail: "커피, 영화, 이동통신, 대중 교통, 전기차 충전 금액 적립",
+      title: "온라인쇼핑",
+      detail: "온라인 쇼핑몰 이용금액 5% 캐쉬백",
     },
     {
-      title: "주요 놀이 공원 50% 현장할인",
-      detail:
-        "롯데월드(아쿠아리움), 에버랜드, 이월드(대구), 경주월드, 통도환타지아",
+      title: "오프라인 쇼핑 5% 캐쉬백",
+      detail: "오프라인 쇼핑 이용금액 5% 캐쉬백",
     },
   ],
-  imgURL: "/img/Galleria.png",
+  imgURL: "https://pc.wooricard.com/webcontent/cdPrdImgFileList/resizeImg/835479_Large.png",
 };
 
 const cardList = [card1, card2, card3, card4];
