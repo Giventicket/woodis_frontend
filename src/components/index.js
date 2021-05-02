@@ -8,9 +8,10 @@ import Footer from "./Footer";
 import SingleMenu from "./SingleMenu";
 import ConsumptionBoard from "./ConsumptionBoard";
 import ConsumptionPanel from "./ConsumptionPanel";
-import Cards from "./Cards";
+import CreditCards from "./CreditCards";
 import SearchIDForm from "./SearchIDForm";
 import ReregisterForm from "./ReregisterForm";
+import CreditCard from "./CreditCard";
 
 export {
   Logo,
@@ -20,10 +21,11 @@ export {
   SignupForm,
   UserDescription,
   Footer,
-  Cards,
+  CreditCards,
   SingleMenu,
   ConsumptionBoard,
   ConsumptionPanel,
   SearchIDForm,
   ReregisterForm,
+  CreditCard,
 };

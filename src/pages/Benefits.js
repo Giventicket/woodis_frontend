@@ -1,6 +1,12 @@
 import React from "react";
 import { Box } from "@material-ui/core";
-import { Logo, Description, SingleMenu, Cards, Footer } from "../components";
+import {
+  Logo,
+  Description,
+  SingleMenu,
+  CreditCards,
+  Footer,
+} from "../components";
 import { UserDescriptionContainer } from "../containers";
 import { useSelector } from "react-redux";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
@@ -32,7 +38,7 @@ function Benefits() {
         <CreditCardIcon style={{ color: "#008CE0", fontSize: iconSize }} />
       </SingleMenu>
       <Box pt={4} />
-      <Cards />
+      <CreditCards />
       <Box pt={4} />
       <Footer />
       <Box pt={4} />

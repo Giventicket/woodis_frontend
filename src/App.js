@@ -17,7 +17,7 @@ function App() {
       <Route exact path="/calendar" component={Calendar} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/benefits" component={Benefits} />
-      <Route exact path="/benefit" component={Benefit} />
+      <Route exact path="/benefit/:cardNum" component={Benefit} />
       <Route exact path="/searchID" component={SearchID} />
       <Route exact path="/reregister" component={Reregister} />
       <Route exact path="/" component={Main} />
