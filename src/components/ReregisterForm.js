@@ -44,13 +44,33 @@ const StyledSelect = withStyles({
   },
 })(Select);
 
-const ReregisterForm = function ({ signup }) {
+const ReregisterForm = function ({ onChangePassword }) {
   const classes = useStyles();
   const fadeIn = useFadeIn(0.5);
-
+  let id, oldPassword, newPassword;
   return (
-    <form method="POST" className={classes.form} {...fadeIn}>
-      {/* 처음에 비밀번호를 바꾸려는 사용자의 계정을 확인하기 위해 아이디를  확인한다. */}
+    <form
+      method="POST"
+      className={classes.form}
+      {...fadeIn}
+      onSubmit={async (e) => {
+        e.preventDefault();
+        [id, oldPassword, newPassword] = e.target.querySelectorAll("input");
+        const result = await onChangePassword(
+          id.value,
+          oldPassword.value,
+          newPassword.value
+        );
+        if (result) {
+          alert("비밀번호가 변경되었습니다");
+        } else {
+          alert("아이디 또는 비밀번호가 일치하지 않습니다");
+        }
+        id.value = "";
+        oldPassword.value = "";
+        newPassword.value = "";
+      }}
+    >
       <Box pb={1} pr={26}>
         <b style={{ fontSize: "0.8rem" }}>아이디</b>
       </Box>
@@ -61,24 +81,9 @@ const ReregisterForm = function ({ signup }) {
         placeholder="아이디 입력"
       />
       <Box mt={4} />
-      <Box pl="15px">
-        <Button
-          variant="contained"
-          className={classes.signupButton}
-          type="submit"
-        >
-          아이디 확인
-        </Button>
-        <Box component="span" ml={2} />
-        <Button variant="contained" className={classes.cancelButton} href="/">
-          취소
-        </Button>
-      </Box>
-      <Box mt={5} />
 
-      {/* 아이디를 확인 하고 맞으면 비밀번호를 변경하는 UI를 보여준다.*/}
-      <Box pb={1} pr={24}>
-        <b style={{ fontSize: "0.8rem" }}>비밀번호</b>
+      <Box pb={1} pr={26}>
+        <b style={{ fontSize: "0.8rem" }}>기존 비밀번호</b>
       </Box>
       <TextField
         className={classes.input}
@@ -88,8 +93,8 @@ const ReregisterForm = function ({ signup }) {
         placeholder="비밀번호 입력"
       />
       <Box mt={2} />
-      <Box pb={1} pr={19}>
-        <b style={{ fontSize: "0.8rem" }}>비밀번호 확인</b>
+      <Box pb={1} pr={26}>
+        <b style={{ fontSize: "0.8rem" }}>새 비밀번호</b>
       </Box>
       <TextField
         className={classes.input}

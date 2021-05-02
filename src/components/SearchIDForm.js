@@ -44,24 +44,28 @@ const StyledSelect = withStyles({
   },
 })(Select);
 
-const SearchIDForm = function ({
-  onChangeName,
-  onChangeAgency,
-  onChangePhone,
-  onChangeEmail,
-  signup,
-}) {
+const SearchIDForm = function ({ onSearchID }) {
   const classes = useStyles();
   const fadeIn = useFadeIn(0.5);
+  let name, phone, email, ID;
 
   return (
     <form
       method="POST"
       className={classes.form}
       {...fadeIn}
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-        signup();
+        [name, phone, email] = e.target.querySelectorAll("input");
+        ID = await onSearchID(name.value, phone.value, email.value);
+        if (ID) {
+          alert(ID);
+        } else {
+          alert("해당 요청에 맞는 아이디가 존재하지 않습니다.");
+        }
+        name.value = "";
+        phone.value = "";
+        email.value = "";
       }}
     >
       <Box pb={1} pr={28}>
@@ -72,36 +76,7 @@ const SearchIDForm = function ({
         size="small"
         variant="standard"
         placeholder="이름 입력"
-        onChange={(e) => onChangeName(e.target.value)}
       />
-      <Box mt={2} />
-      <Box pb={1} pr={26}>
-        <b style={{ fontSize: "0.8rem" }}>통신사</b>
-      </Box>
-      <StyledSelect
-        defaultValue={1}
-        variant="outlined"
-        onChange={(e) => onChangeAgency(e.target.value.toString())}
-      >
-        <MenuItem value={1} key="SKT">
-          SKT
-        </MenuItem>
-        <MenuItem value={2} key="KT">
-          KT
-        </MenuItem>
-        <MenuItem value={3} key="LGU+">
-          LGU+
-        </MenuItem>
-        <MenuItem value={4} key="SKT(알뜰폰)">
-          SKT(알뜰폰)
-        </MenuItem>
-        <MenuItem value={5} key="KT(알뜰폰)">
-          KT(알뜰폰)
-        </MenuItem>
-        <MenuItem value={6} key="LGU+(알뜰폰)">
-          LGU+(알뜰폰)
-        </MenuItem>
-      </StyledSelect>
       <Box mt={2} />
       <Box pb={1} pr={24}>
         <b style={{ fontSize: "0.8rem" }}>전화번호</b>
@@ -111,7 +86,6 @@ const SearchIDForm = function ({
         size="small"
         variant="standard"
         placeholder="전화번호 입력"
-        onChange={(e) => onChangePhone(e.target.value)}
       />
       <Box mt={2} />
       <Box pb={1} pr={26}>
@@ -122,7 +96,6 @@ const SearchIDForm = function ({
         size="small"
         variant="standard"
         placeholder="이메일 입력"
-        onChange={(e) => onChangeEmail(e.target.value)}
       />
       <Box mt={4} />
       <Box pl="15px">
