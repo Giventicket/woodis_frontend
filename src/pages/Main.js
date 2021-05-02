@@ -27,7 +27,10 @@ function Main() {
         <LoginFormContainer />
       )}
       <Box pt={4} />
-      <MenuContainer name={user ? user.name : null} />
+      <MenuContainer
+        name={user ? user.name : null}
+        email={user ? user.email : null}
+      />
       <Box pt={4} />
       <Footer></Footer>
       <Box pt={4} />

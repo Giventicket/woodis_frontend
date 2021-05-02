@@ -11,6 +11,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import useFadeIn from "../libs/useFadeIn";
 import { isTablet, isMobile } from "react-device-detect";
+import swal from "sweetalert";
 
 const useStyles = makeStyles(theme => ({
   grid: {
@@ -43,7 +44,7 @@ const getMonthandDay = () => {
   return `?year=${year}&month=${month}&date=${date}`;
 };
 
-const Menu = function ({ name, onClick }) {
+const Menu = function ({ name, onClick, email }) {
   const classes = useStyles();
   let iconSize = 200;
   if (!isTablet && isMobile) {
@@ -80,7 +81,16 @@ const Menu = function ({ name, onClick }) {
         </Item>
       </Grid>
       <Grid item xs sm>
-        <Item onClick={onClick} delay={1} description={subscriptDescription}>
+        <Item
+          onClick={() => {
+            onClick();
+            swal(
+              `${email} 로 WOODIS의 메일이 발송되었습니다. WOODIS와 함께 우아한 금융서비스를 이용하길 바랍니다.`
+            );
+          }}
+          delay={1}
+          description={subscriptDescription}
+        >
           <SubscriptionsIcon style={{ color: "#008CE0", fontSize: iconSize }} />
         </Item>
       </Grid>

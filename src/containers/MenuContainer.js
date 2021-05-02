@@ -4,7 +4,7 @@ import { Menu } from "../components";
 import { useSelector } from "react-redux";
 import swal from "sweetalert";
 
-const MenuContainer = ({ name }) => {
+const MenuContainer = ({ name, email }) => {
   const user = useSelector(state => state.user.user);
   const onClick = useCallback(
     e => {
@@ -16,7 +16,7 @@ const MenuContainer = ({ name }) => {
     },
     [user]
   );
-  return <Menu onClick={onClick} name={name} />;
+  return <Menu onClick={onClick} name={name} email={email} />;
 };
 
 export default React.memo(MenuContainer);
