@@ -164,12 +164,10 @@ export const asyncGetDiscount = async ({ year, month, code, acc }) => {
     const response = await axios.post(
       "http://3.34.2.185:8000/api/user/getDiscount",
       {
-        dataBody: {
-          year: Number(year),
-          month: month,
-          code: code,
-          acc: acc,
-        },
+        year: Number(year),
+        month: month,
+        code: code,
+        acc: acc,
       },
       {
         headers: {

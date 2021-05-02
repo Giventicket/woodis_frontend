@@ -7,14 +7,15 @@ const SearchIDFormContainer = ({ onSearchID }) => {
     let res;
     try {
       res = await axios.post("http://3.34.2.185:8000/api/user/findUser", {
-        name: name,
-        phone: phone,
-        email: email,
+        name,
+        phone,
+        email,
       });
     } catch (error) {
       console.log(error);
       return undefined;
     }
+    console.log(res);
     return res.data.id;
   }
   return <SearchIDForm onSearchID={onSearchID} />;

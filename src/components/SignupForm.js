@@ -149,7 +149,7 @@ const SignupForm = function ({
         className={classes.input}
         size="small"
         variant="standard"
-        placeholder="우리은행 SMS인증번호를 발급해주세요."
+        placeholder="우리은행 인증번호 미인증상태"
         value={authKey}
         disabled={true}
       />

@@ -3,6 +3,7 @@ import { TextField, Box, Button, Select, MenuItem } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import useFadeIn from "../libs/useFadeIn";
+import swal from "sweetalert";
 
 const useStyles = makeStyles(theme => ({
   form: { textAlign: "center" },
@@ -57,11 +58,12 @@ const SearchIDForm = function ({ onSearchID }) {
       onSubmit={async e => {
         e.preventDefault();
         [name, phone, email] = e.target.querySelectorAll("input");
+        console.log(name.value, phone.value, email.value);
         ID = await onSearchID(name.value, phone.value, email.value);
         if (ID) {
-          alert(ID);
+          swal(`요청하신 아이디는 ${ID} 입니다.`);
         } else {
-          alert("해당 요청에 맞는 아이디가 존재하지 않습니다.");
+          swal("해당 요청에 맞는 아이디가 존재하지 않습니다.");
         }
         name.value = "";
         phone.value = "";
@@ -77,31 +79,6 @@ const SearchIDForm = function ({ onSearchID }) {
         variant="standard"
         placeholder="이름 입력"
       />
-      <Box mt={2} />
-      <Box pb={1} pr={26}>
-        <b style={{ fontSize: "0.8rem" }}>통신사</b>
-      </Box>
-      <StyledSelect defaultValue={1} variant="outlined">
-        <MenuItem value={1} key="SKT">
-          SKT
-        </MenuItem>
-        <MenuItem value={2} key="KT">
-          KT
-        </MenuItem>
-        <MenuItem value={3} key="LGU+">
-          LGU+
-        </MenuItem>
-        <MenuItem value={4} key="SKT(알뜰폰)">
-          SKT(알뜰폰)
-        </MenuItem>
-        <MenuItem value={5} key="KT(알뜰폰)">
-          KT(알뜰폰)
-        </MenuItem>
-        <MenuItem value={6} key="LGU+(알뜰폰)">
-          LGU+(알뜰폰)
-        </MenuItem>
-      </StyledSelect>
-      <Box mt={2} />
       <Box mt={2} />
       <Box pb={1} pr={24}>
         <b style={{ fontSize: "0.8rem" }}>전화번호</b>
