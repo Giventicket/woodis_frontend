@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import useFadeIn from "../libs/useFadeIn";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   form: { textAlign: "center" },
   input: {
     backgroundColor: "white",
@@ -44,13 +44,7 @@ const StyledSelect = withStyles({
   },
 })(Select);
 
-const SearchIDForm = function ({
-  onSearchID,
-  onChangePhone,
-  onChangeAgency,
-  onChangeEmail,
-  onChangeName,
-}) {
+const SearchIDForm = function ({ onSearchID }) {
   const classes = useStyles();
   const fadeIn = useFadeIn(0.5);
   let name, phone, email, ID;
@@ -60,9 +54,10 @@ const SearchIDForm = function ({
       method="POST"
       className={classes.form}
       {...fadeIn}
-      onSubmit={async e => {
+      onSubmit={async (e) => {
         e.preventDefault();
         [name, phone, email] = e.target.querySelectorAll("input");
+        console.log(name.value, phone.value, email.value);
         ID = await onSearchID(name.value, phone.value, email.value);
         if (ID) {
           alert(ID);
@@ -82,37 +77,7 @@ const SearchIDForm = function ({
         size="small"
         variant="standard"
         placeholder="이름 입력"
-        onChange={e => onChangeName(e.target.value)}
       />
-      <Box mt={2} />
-      <Box pb={1} pr={26}>
-        <b style={{ fontSize: "0.8rem" }}>통신사</b>
-      </Box>
-      <StyledSelect
-        defaultValue={1}
-        variant="outlined"
-        onChange={e => onChangeAgency(e.target.value.toString())}
-      >
-        <MenuItem value={1} key="SKT">
-          SKT
-        </MenuItem>
-        <MenuItem value={2} key="KT">
-          KT
-        </MenuItem>
-        <MenuItem value={3} key="LGU+">
-          LGU+
-        </MenuItem>
-        <MenuItem value={4} key="SKT(알뜰폰)">
-          SKT(알뜰폰)
-        </MenuItem>
-        <MenuItem value={5} key="KT(알뜰폰)">
-          KT(알뜰폰)
-        </MenuItem>
-        <MenuItem value={6} key="LGU+(알뜰폰)">
-          LGU+(알뜰폰)
-        </MenuItem>
-      </StyledSelect>
-      <Box mt={2} />
       <Box mt={2} />
       <Box pb={1} pr={24}>
         <b style={{ fontSize: "0.8rem" }}>전화번호</b>
@@ -122,7 +87,6 @@ const SearchIDForm = function ({
         size="small"
         variant="standard"
         placeholder="전화번호 입력"
-        onChange={e => onChangePhone(e.target.value)}
       />
       <Box mt={2} />
       <Box pb={1} pr={26}>
@@ -133,7 +97,6 @@ const SearchIDForm = function ({
         size="small"
         variant="standard"
         placeholder="이메일 입력"
-        onChange={e => onChangeEmail(e.target.value)}
       />
       <Box mt={4} />
       <Box pl="15px">
