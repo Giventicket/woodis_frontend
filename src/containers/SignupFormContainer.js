@@ -21,7 +21,6 @@ import {
 } from "../modules/signup";
 import axios from "axios";
 
-
 const SignupFormContainer = () => {
   const dispatch = useDispatch();
   const {
@@ -33,7 +32,7 @@ const SignupFormContainer = () => {
     password,
     passwordConfirm,
     identity,
-	authKey
+    authKey,
   } = useSelector(state => state.signup);
   const onChangeName = useCallback(name => dispatch(change_name(name)), [
     dispatch,
@@ -62,30 +61,30 @@ const SignupFormContainer = () => {
     [dispatch]
   );
   const onClickAuth = useCallback(
-    (e) => {
-		if(!agency || !name || !phone || !identity){
-			console.log(agency, name, phone, identity);
-			swal("본인인증에 필요한 상기 데이터 값을 입력해주세요.");
-			return;
-		}
-		if (!checkPhone(phone)) {
-			swal("휴대전화를 형식에 알맞게 입력해주세요.");
-			return;
-		}
-		if (!checkIdentity(identity)) {
-			swal("주민등록번호를 올바르게 입력해주세요.");
-			return;
-		}
-		dispatch(auth(name, agency, phone, identity));
-		},
+    e => {
+      if (!agency || !name || !phone || !identity) {
+        console.log(agency, name, phone, identity);
+        swal("본인인증에 필요한 상기 데이터 값을 입력해주세요.");
+        return;
+      }
+      if (!checkPhone(phone)) {
+        swal("휴대전화를 형식에 알맞게 입력해주세요.");
+        return;
+      }
+      if (!checkIdentity(identity)) {
+        swal("주민등록번호를 올바르게 입력해주세요.");
+        return;
+      }
+      dispatch(auth(name, agency, phone, identity));
+    },
     [dispatch, agency, name, phone, identity, auth]
   );
 
   const signup = useCallback(() => {
-	  if(!authKey){
-		  swal("본인 인증을 완료해주세요.");
+    if (!authKey) {
+      swal("본인 인증을 완료해주세요.");
       return;
-	  }
+    }
     if (
       !name ||
       !agency ||
@@ -111,7 +110,9 @@ const SignupFormContainer = () => {
       return;
     }
     if (password === passwordConfirm) {
-      dispatch(sign_up(name, agency, phone, email, id, password, identity, authKey));
+      dispatch(
+        sign_up(name, agency, phone, email, id, password, identity, authKey)
+      );
       return;
     } else swal("비밀번호를 다시 확인해주세요.");
   }, [
@@ -142,7 +143,7 @@ const SignupFormContainer = () => {
       signup={signup}
       onChangeIdentity={onChangeIdentity}
       onClickAuth={onClickAuth}
-	  authKey={authKey}
+      authKey={authKey}
     />
   );
 };

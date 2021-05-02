@@ -28,11 +28,15 @@ export const sign_up = createAction(
     id,
     password,
     identity,
-	authKey
+    authKey,
   })
 );
-export const auth = createAction(AUTH, (name, agency, phone, identity) => ({name, agency, phone, identity}));
-
+export const auth = createAction(AUTH, (name, agency, phone, identity) => ({
+  name,
+  agency,
+  phone,
+  identity,
+}));
 
 export const change_name = createAction(CHANGE_NAME, name => name);
 export const change_identity = createAction(
@@ -51,10 +55,7 @@ export const change_passwordConfirm = createAction(
   CHANGE_PASSWORDCONFIRM,
   passwordConfirm => passwordConfirm
 );
-export const change_authKey = createAction(
-  CHANGE_AUTHKEY,
-  authKey => authKey
-);
+export const change_authKey = createAction(CHANGE_AUTHKEY, authKey => authKey);
 export const reset = createAction(RESET);
 
 const asyncSignupSaga = createRequestSaga(SIGNUP, api.asyncSignUp);
@@ -74,7 +75,7 @@ const initialState = {
   password: null,
   passwordConfirm: null,
   identity: null,
-  authKey:null
+  authKey: null,
 };
 
 const signup = handleActions(
@@ -102,7 +103,7 @@ const signup = handleActions(
       ...state,
       identity,
     }),
-	[CHANGE_AUTHKEY]: (state, { payload: authKey }) => ({
+    [CHANGE_AUTHKEY]: (state, { payload: authKey }) => ({
       ...state,
       authKey,
     }),

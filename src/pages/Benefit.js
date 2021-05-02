@@ -15,6 +15,7 @@ import CreditCardIcon from "@material-ui/icons/CreditCard";
 import { isTablet, isMobile } from "react-device-detect";
 import { get_tranList } from "../modules/tranList";
 import getParsedTranList from "../libs/getParsedTranList";
+import myCard from "../images/myCard.png";
 
 function Benefit({
   match: {
@@ -29,15 +30,12 @@ function Benefit({
   const user = useSelector(state => state.user.user);
   const currentAcc = useSelector(state => state.user.currentAcc);
   const tranList = useSelector(state => state.tranList.tranList);
-  const parsedTranList = getParsedTranList(
-    tranList,
-    2021,
-    1
-  );
+  console.log(tranList);
+  const parsedTranList = getParsedTranList(tranList, 2021, 2);
   useEffect(() => {
     if (currentAcc) {
       let today = new Date();
-      dispatch(get_tranList(today.getFullYear(), today.getMonth()+1,  currentAcc));
+      dispatch(get_tranList("2021", "2", currentAcc));
     }
   }, [dispatch, currentAcc]);
 
@@ -73,10 +71,20 @@ function Benefit({
           lg
           style={{ borderRight: "inset", borderColor: "white" }}
         >
-          <CreditCard imgURL={cardList[cardNum].imgURL} />
+          <CreditCard
+            imgURL={cardList[cardNum].imgURL}
+            parsedTranList={parsedTranList}
+            year={2021}
+            month={2}
+          />
         </Grid>
         <Grid item xs md lg>
-          <CreditCard imgURL={cardList[cardNum].imgURL} parsedTranList={parsedTranList} year={2021} month={1}/>
+          <CreditCard
+            imgURL={myCard}
+            parsedTranList={parsedTranList}
+            year={2021}
+            month={2}
+          />
         </Grid>
         <Grid item xs={false} md={false} lg={1} />
         <Grid xs={12} md={12} lg={12}>

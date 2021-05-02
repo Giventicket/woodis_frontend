@@ -59,7 +59,7 @@ const SignupForm = function ({
   onChangePasswordConfirm,
   signup,
   authKey,
-  onClickAuth
+  onClickAuth,
 }) {
   const classes = useStyles();
   const fadeIn = useFadeIn(0.5);
@@ -135,23 +135,23 @@ const SignupForm = function ({
         onChange={e => onChangePhone(e.target.value)}
       />
       <Box mt={2} />
-	  <Button
-	      size="small"
-          variant="contained"
-          className={classes.signupButton}
-		  fullWidth={true}
-		  onClick={onClickAuth}
-        >
-          인증번호 발급
-        </Button>		
+      <Button
+        size="small"
+        variant="contained"
+        className={classes.signupButton}
+        fullWidth={true}
+        onClick={onClickAuth}
+      >
+        인증번호 발급
+      </Button>
       <Box mt={2} />
-	  <TextField
+      <TextField
         className={classes.input}
         size="small"
         variant="standard"
-        placeholder="우리은행 SMS인증번호를 발급해주세요." 
-		value={authKey}
-		disabled={true}
+        placeholder="우리은행 SMS인증번호를 발급해주세요."
+        value={authKey}
+        disabled={true}
       />
       <Box pt={2} pb={1}>
         <b style={{ fontSize: "0.8rem" }}>이메일</b>

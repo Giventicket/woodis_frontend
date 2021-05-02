@@ -31,7 +31,12 @@ const ConsumptionBoard = function ({ location, parsedTranList }) {
       {show && <hr />}
       <div style={dayStyle}>{`${query.date}일 ${days[day]}요일`}</div>
       {parsedTranList[query.date].map((tran, index) => (
-        <div key={index} style={dataStyle}>{`${tran.TRN_DT} ${tran.TRN_TM.substr(0,2)}시 ${tran.TRN_TM.substr(2,2)}분 ${tran.TRN_TM.substr(4,2)}초 : ${
+        <div key={index} style={dataStyle}>{`${
+          tran.TRN_DT
+        } ${tran.TRN_TM.substr(0, 2)}시 ${tran.TRN_TM.substr(
+          2,
+          2
+        )}분 ${tran.TRN_TM.substr(4, 2)}초 : ${
           tran.TRN_TXT
         }에서 ${tran.PAY_AM.toLocaleString()}원 결제하셨습니다.`}</div>
       ))}

@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import useFadeIn from "../libs/useFadeIn";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   form: { textAlign: "center" },
   input: {
     backgroundColor: "white",

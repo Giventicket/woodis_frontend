@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import useFadeIn from "../libs/useFadeIn";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   form: { textAlign: "center" },
   input: {
     backgroundColor: "white",
@@ -59,7 +59,7 @@ const SearchIDForm = function ({
       method="POST"
       className={classes.form}
       {...fadeIn}
-      onSubmit={(e) => {
+      onSubmit={e => {
         e.preventDefault();
         signup();
       }}
@@ -72,7 +72,7 @@ const SearchIDForm = function ({
         size="small"
         variant="standard"
         placeholder="이름 입력"
-        onChange={(e) => onChangeName(e.target.value)}
+        onChange={e => onChangeName(e.target.value)}
       />
       <Box mt={2} />
       <Box pb={1} pr={26}>
@@ -81,7 +81,7 @@ const SearchIDForm = function ({
       <StyledSelect
         defaultValue={1}
         variant="outlined"
-        onChange={(e) => onChangeAgency(e.target.value.toString())}
+        onChange={e => onChangeAgency(e.target.value.toString())}
       >
         <MenuItem value={1} key="SKT">
           SKT
@@ -111,7 +111,7 @@ const SearchIDForm = function ({
         size="small"
         variant="standard"
         placeholder="전화번호 입력"
-        onChange={(e) => onChangePhone(e.target.value)}
+        onChange={e => onChangePhone(e.target.value)}
       />
       <Box mt={2} />
       <Box pb={1} pr={26}>
@@ -122,7 +122,7 @@ const SearchIDForm = function ({
         size="small"
         variant="standard"
         placeholder="이메일 입력"
-        onChange={(e) => onChangeEmail(e.target.value)}
+        onChange={e => onChangeEmail(e.target.value)}
       />
       <Box mt={4} />
       <Box pl="15px">

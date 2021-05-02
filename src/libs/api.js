@@ -11,24 +11,24 @@ export const asyncSignUp = async ({
   id,
   password,
   identity,
-  authKey
+  authKey,
 }) => {
   try {
     await axios.post("http://3.34.2.185:8000/api/auth/signup", {
-		"dataBody" :{
-			    "RRNO_BFNB": identity.slice(0, 6),
-    "ENCY_RRNO_LSNM": identity.slice(6, 13),
-    "ENCY_SMS_CRTF_NO": "1111111",
-    "CRTF_UNQ_NO": authKey
-		},
-		"signup":{
-      name: name,
-      agency: agency,
-      phone: phone,
-      email: email,
-      id: id,
-      password: password,
-	  }
+      dataBody: {
+        RRNO_BFNB: identity.slice(0, 6),
+        ENCY_RRNO_LSNM: identity.slice(6, 13),
+        ENCY_SMS_CRTF_NO: "1111111",
+        CRTF_UNQ_NO: authKey,
+      },
+      signup: {
+        name: name,
+        agency: agency,
+        phone: phone,
+        email: email,
+        id: id,
+        password: password,
+      },
     });
     swal(
       `회원가입을 완료하였습니다! `,
@@ -133,26 +133,48 @@ export const asyncGetTranList = async ({ year, month, acc }) => {
   }
 };
 
+export const asyncAuth = async ({ name, agency, phone, identity }) => {
+  try {
+    const response = await axios.post(
+      "http://3.34.2.185:8000/api/auth/getCellCerti",
+      {
+        dataBody: {
+          COMC_DIS: agency,
+          HP_NO: phone.slice(0, 3) + phone.slice(4, 8) + phone.slice(9, 13),
+          HP_CRTF_AGR_YN: "Y",
+          FNM: name,
+          RRNO_BFNB: identity.slice(0, 6),
+          ENCY_RRNO_LSNM: identity.slice(6, 13),
+        },
+      }
+    );
+    console.log("asyncAuth", response.data);
 
-export const asyncAuth =  async ({name, agency, phone, identity}) => {
-			try {
-				const response = await axios.post(
-					"http://3.34.2.185:8000/api/auth/getCellCerti",
-					{
-						"dataBody":{
-							"COMC_DIS": agency,
-							"HP_NO": phone.slice(0,3)+phone.slice(4,8)+phone.slice(9,13),
-							"HP_CRTF_AGR_YN": "Y",
-							"FNM": name,
-							"RRNO_BFNB": identity.slice(0, 6),
-							"ENCY_RRNO_LSNM": identity.slice(6, 13)
-						}, 
-					});					
-					console.log("asyncAuth", response.data);
+    return response.data;
+  } catch (e) {
+    return;
+  }
+};
 
-			return response.data;
+export const asyncGetDiscount = async ({ name, agency, phone, identity }) => {
+  try {
+    const response = await axios.post(
+      "http://3.34.2.185:8000/api/user/getDiscount",
+      {
+        dataBody: {
+          COMC_DIS: agency,
+          HP_NO: phone.slice(0, 3) + phone.slice(4, 8) + phone.slice(9, 13),
+          HP_CRTF_AGR_YN: "Y",
+          FNM: name,
+          RRNO_BFNB: identity.slice(0, 6),
+          ENCY_RRNO_LSNM: identity.slice(6, 13),
+        },
+      }
+    );
+    console.log("asyncAuth", response.data);
 
-		  } catch (e) {	  
-			return;
-		  }
-		};
+    return response.data;
+  } catch (e) {
+    return;
+  }
+};
