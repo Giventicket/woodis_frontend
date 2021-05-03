@@ -85,7 +85,7 @@ const AnotherDayConsumptionBox = function ({ parsedTranList, year, month }) {
               }}
             >
               {`${year}년 ${month}월 ${index}일 ${
-                days[new Date(`${year}-${month}-${index}`).getDay()]
+                days[new Date(`${String(year)}-${String(month).length==1 ? "0"+String(month) : String(month)}-${String(index).length==1 ? "0"+String(index) : String(index)}`).getDay()]
               }요일`}
             </div>
             {array.map((tran, idx) =>

@@ -11,7 +11,7 @@ const dayStyle = {
 
 const ConsumptionBoard = function ({ location, parsedTranList }) {
   const query = queryString.parse(location.search);
-  const day = new Date(`2021-${query.month}-${query.date}`).getDay();
+  const day = new Date(`${String(query.year)}-${String(query.month).length==1 ? "0"+String(query.month) : String(query.month)}-${String(query.date).length==1 ? "0"+String(query.date) : String(query.date)}`).getDay();
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   let show = false;
   if (!isTablet && isMobile) {
