@@ -12,6 +12,7 @@ import CreditCards from "./CreditCards";
 import SearchIDForm from "./SearchIDForm";
 import ReregisterForm from "./ReregisterForm";
 import CreditCard from "./CreditCard";
+import MyPageForm from "./MyPageForm";
 
 export {
   Logo,
@@ -28,4 +29,5 @@ export {
   SearchIDForm,
   ReregisterForm,
   CreditCard,
+  MyPageForm,
 };

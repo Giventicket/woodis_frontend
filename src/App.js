@@ -9,12 +9,14 @@ import {
   ErrorPage,
   SearchID,
   Reregister,
+  MyPage,
 } from "./pages";
 
 function App() {
   return (
     <Switch>
       <Route exact path="/calendar" component={Calendar} />
+      <Route exact path="/mypage" component={MyPage} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/benefits" component={Benefits} />
       <Route exact path="/benefit/:cardNum" component={Benefit} />

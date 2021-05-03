@@ -6,6 +6,7 @@ import SignUp from "./SignUp";
 import ErrorPage from "./ErrorPage";
 import SearchID from "./SearchID";
 import Reregister from "./Reregister";
+import MyPage from "./MyPage";
 
 export {
   Main,
@@ -16,4 +17,5 @@ export {
   SearchID,
   Reregister,
   ErrorPage,
+  MyPage,
 };
