@@ -70,10 +70,12 @@ const SignupFormContainer = () => {
         swal("휴대전화를 형식에 알맞게 입력해주세요.");
         return;
       }
+	  /*
       if (!checkIdentity(identity)) {
         swal("주민등록번호를 올바르게 입력해주세요.");
         return;
       }
+	  */
       dispatch(auth(name, agency, phone, identity));
     },
     [dispatch, agency, name, phone, identity, auth]
@@ -104,10 +106,12 @@ const SignupFormContainer = () => {
       swal("휴대전화를 형식에 알맞게 입력해주세요.");
       return;
     }
+	/*
     if (!checkIdentity(identity)) {
       swal("주민등록번호를 올바르게 입력해주세요.");
       return;
     }
+	*/
     if (password === passwordConfirm) {
       dispatch(
         sign_up(name, agency, phone, email, id, password, identity, authKey)
